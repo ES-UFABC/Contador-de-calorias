@@ -1,4 +1,4 @@
-# Grupo 2.5 - Projeto Contador de Calorias 
+# Grupo 19 - Projeto Contador de Calorias 
 
 1. Vitor Miguel Martins
 1. Lucas Martin De Lucca 
