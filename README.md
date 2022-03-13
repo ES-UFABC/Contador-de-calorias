@@ -13,7 +13,7 @@ A ideia é de que o usuário não só possa ter o acompanhamento diario de macro
 
 ## Tecnologias
 
-## License
+## Licença
 
 O Projeto Contador de Calorias está sobre a Licença MIT.
 
