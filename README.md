@@ -1,12 +1,5 @@
 # Grupo 19 - Projeto Contador de Calorias 
 
-1. Vitor Miguel Martins
-1. Lucas Martin De Lucca 
-1. Anderson Lima de Araújo 
-1. Mateus da Silva Belchior Capistrano
-1. Leonardo Ferretti
-1. André Marinho Monson Nascimento 
-
 ## Sobre
 A ferramenta de contador de calorias se trata de uma aplicação que irá auxiliará na contagem diária de calorias e macronutrientes ingeridos pelo usuário ao longo do dia.
 
@@ -19,3 +12,12 @@ A ideia é de que o usuário não só possa ter o acompanhamento diario de macro
 ## Tecnologias
 
 ## License
+
+## Desenvolvedores
+
+1. Vitor Miguel Martins
+1. Lucas Martin De Lucca 
+1. Anderson Lima de Araújo 
+1. Mateus da Silva Belchior Capistrano
+1. Leonardo Ferretti
+1. André Marinho Monson Nascimento 
