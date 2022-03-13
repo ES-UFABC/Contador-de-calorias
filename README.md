@@ -7,10 +7,14 @@
 1. Leonardo Ferretti
 1. André Marinho Monson Nascimento 
 
-## Objetivo:
-A ferramenta de contador de calorias se trata, assim como o nome sugere, de uma aplicação onde o irá auxiliar o usuário na contagem diária de calorias e macronutrientes dos alimentos ingeridos pelos mesmo ao longo do dia.
-A ideia é de que o usuário não só possa ter o acompanhamento diario de macronutrientes, mas que também tenha uma base historica que possa acompanhar seu progresso, e em quais pontos devem se ter atenção (com base em valores de massa corporal e altura)
+## Sobre:
+A ferramenta de contador de calorias se trata de uma aplicação que irá auxiliará na contagem diária de calorias e macronutrientes ingeridos pelo usuário ao longo do dia.
+A ideia é de que o usuário não só possa ter o acompanhamento diario de macronutrientes, mas que também tenha uma base historica de modo que possa acompanhar seu progresso, e em quais pontos devem se ter atenção (com base em valores de massa corporal e altura)
 
-## Utilização:
+## Como Usar:
 
 * https://docs.google.com/document/d/1AtXgoJ0YIlHmRmdChPn4bKNd2HCulUlBfgiq3gq3cvI/edit?usp=sharing
+
+## Tecnologias:
+
+## License
