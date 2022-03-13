@@ -9,6 +9,7 @@
 
 ## Sobre
 A ferramenta de contador de calorias se trata de uma aplicação que irá auxiliará na contagem diária de calorias e macronutrientes ingeridos pelo usuário ao longo do dia.
+
 A ideia é de que o usuário não só possa ter o acompanhamento diario de macronutrientes, mas que também tenha uma base historica de modo que possa acompanhar seu progresso, e em quais pontos devem se ter atenção (com base em valores de massa corporal e altura)
 
 ## Como Usar
