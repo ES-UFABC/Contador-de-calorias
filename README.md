@@ -12,12 +12,13 @@ A ideia é de que o usuário não só possa ter o acompanhamento diario de macro
 ## Tecnologias
 
 ## License
+O Projeto Contador de Calorias está sobre a Licença MIT.
 
 ## Desenvolvedores
 
-1. Vitor Miguel Martins
-1. Lucas Martin De Lucca 
-1. Anderson Lima de Araújo 
-1. Mateus da Silva Belchior Capistrano
-1. Leonardo Ferretti
-1. André Marinho Monson Nascimento 
+- Vitor Miguel Martins
+- Lucas Martin De Lucca 
+- Anderson Lima de Araújo 
+- Mateus da Silva Belchior Capistrano
+- Leonardo Ferretti
+- André Marinho Monson Nascimento 
