@@ -1,5 +1,5 @@
 {
-  "name": "calc-calorias-client",
+  "name": "contador-calorias-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
