@@ -1,4 +1,4 @@
-<img alt="GitHub" src="https://img.shields.io/github/license/ES-UFABC/Contador-de-calorias"> <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/ES-UFABC/Contador-de-calorias"> <img alt="GitHub issues" src="https://img.shields.io/github/issues/ES-UFABC/Contador-de-calorias">
+[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0) <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/ES-UFABC/Contador-de-calorias"> <img alt="GitHub issues" src="https://img.shields.io/github/issues/ES-UFABC/Contador-de-calorias">
 
 # Grupo 19 - Projeto Contador de Calorias 
 
