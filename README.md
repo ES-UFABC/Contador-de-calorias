@@ -13,13 +13,12 @@ A ideia é de que o usuário não só possa ter o acompanhamento diario de macro
 
 ## Tecnologias
 
-O Projeto utilizará linguagens que são bastante requisitadas no mercado de trabalho e que o grupo se sente confortável para aprender e desenvolver um novo projeto de software.
-Será utilizado React para o front End e Python para Backend 
+O Projeto utilizará linguagens que são bastante requisitadas no mercado de trabalho, que possuem amplo conteúdo disponível e que o grupo se sente confortável para aprender e desenvolver um novo projeto de software. Será utilizado React (front-end) e Python (back-end).
 
 
 ## Licença
 
-O Projeto Contador de Calorias está sobre a Licença MIT.
+O Projeto Contador de Calorias está sobre a Licença MPL 2.0.
 
 ## Desenvolvedores
 
