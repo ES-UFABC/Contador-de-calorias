@@ -7,13 +7,7 @@ class get_calories:
     def __init__(self, item):
 
         page = requests.get("https://vitat.com.br/alimentacao/busca-de-alimentos/alimentos/"+item)
-        self.soup = bs4.BeautifulSoup(page.text, "lxml")  
-
-        #self.get_cal_value()
-        #self.get_carbo_value()
-        #self.get_prot_value()
-        #self.get_lip_value()
-    
+        self.soup = bs4.BeautifulSoup(page.text, "lxml")     
 
         self.size_cal = len(str(self.soup.select('tr')[1]))
         self.cal = str(self.soup.select('tr')[1]) 
