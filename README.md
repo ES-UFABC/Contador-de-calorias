@@ -26,9 +26,7 @@ O Projeto Contador de Calorias está sobre a Licença MPL 2.0.
 
 ## Desenvolvedores
 
-- Vitor Miguel Martins
 - Lucas Martin De Lucca 
 - Anderson Lima de Araújo 
 - Mateus da Silva Belchior Capistrano
-- Leonardo Ferretti
 - André Marinho Monson Nascimento 
