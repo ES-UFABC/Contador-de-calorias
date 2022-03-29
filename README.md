@@ -9,6 +9,10 @@ A ideia é de que o usuário não só possa ter o acompanhamento diario de macro
 
 ## Como Usar
 
+O objetivo do aplicativo Contador de Calorias é auxiliar na contagem diária de calorias e macronutrientes dos alimentos ingeridos pelos usuários ao longo do dia.
+
+Este aplicativo fornece o número de calorias com base no resultado de uma pesquisa do usuário por um tipo de alimento. Os dados, por enquanto, serão provenientes do Departamento de Agricultura dos EUA e serão pesquisados para determinar os valores calóricos.
+
 * https://docs.google.com/document/d/1AtXgoJ0YIlHmRmdChPn4bKNd2HCulUlBfgiq3gq3cvI/edit?usp=sharing
 
 ## Tecnologias
