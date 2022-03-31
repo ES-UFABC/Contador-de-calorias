@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route path='/profile' element={
             <ProtectedLayout>
-              <Sobre/>
+              <Header/>
             </ProtectedLayout>}/>
           <Route path='/login' element={<Login/>}>
           </Route>
