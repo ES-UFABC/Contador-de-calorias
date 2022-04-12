@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ProtectedLayout } from './components/Protected';
 import { Login } from './components/Login';
 import Sobre from './pages/Sobre';
+import { Register } from './pages/Register';
 
 function App() {
   return (
@@ -15,8 +16,8 @@ function App() {
             <ProtectedLayout>
               <Sobre/>
             </ProtectedLayout>}/>
-          <Route path='/login' element={<Login/>}>
-          </Route>
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/register' element={<Register/>}/>
         </Routes>     
       </BrowserRouter>
     </AuthProvider>

@@ -15,10 +15,10 @@ export const AuthProvider = ({children}:IAuthProvider)=>{
         }
     },[])
 
-    async function authenticate(email:string,password:string){
-        const response = await LoginRequest(email,password);
+    async function authenticate(userName:string,password:string){
+        const response = await LoginRequest(userName,password);
 
-        const payload = {token:response.token,email}
+        const payload = {token:response.token,userName}
 
         setUser(payload);
         setUserLocalStorage(payload);

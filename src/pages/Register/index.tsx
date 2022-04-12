@@ -1,22 +1,27 @@
 import { Button, Form, Input, Row, message, Col } from "antd"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../context/AuthProvider/useAuth"
+import { LoginRequest } from "../../context/AuthProvider/util"
 
-export const Login = () =>{
+export const Register = () =>{
     const auth = useAuth()
     const navigate = useNavigate();
     async function onFinish(values:{userName:string,password:string}){
         try{
-            await auth.authenticate(values.userName,values.password)
+            await LoginRequest(values.userName,values.password);
 
-            navigate('/profile')
+            await auth.authenticate(values.userName,values.password);
+
+            navigate('/profile');
         }catch(error){
-            message.error('Invalid UserName or password')
+            message.error('It was not possible to register a new user. Try again later');
+
+            navigate('/login');
         }
     }
 
-    function RegisterHandle(){
-        navigate('/register');
+    function CancelHandle(){
+        navigate('/login');
     }
 
     return (
@@ -34,22 +39,22 @@ export const Login = () =>{
                 onFinish={onFinish}
                 >
                     <Form.Item
-                        label='UserName'
+                        label='Digit the username:'
                         name='userName'
                     >
                         <Input/>
                     </Form.Item>
                     <Form.Item
-                        label='Password'
+                        label='Digit the password:'
                         name='password'
                     >
                         <Input.Password/>
                     </Form.Item>
                     <Form.Item wrapperCol={{offset:8,span:16}}>
-                        <Button type='primary' htmlType='submit'>Sign In</Button>
+                        <Button type='primary' htmlType='submit'>Create</Button>
                     </Form.Item>
                     <Form.Item wrapperCol={{offset:12,span:16}}>
-                        <Button type='primary' htmlType='button' onClick={RegisterHandle}>Sign Up</Button>
+                        <Button type='primary' htmlType='button' onClick={CancelHandle}>Cancel</Button>
                     </Form.Item>
                 </Form>
             </Col>
