@@ -2,6 +2,7 @@ import { Button, Form, Input, Row, message, Col } from "antd"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../context/AuthProvider/useAuth"
 import { LoginRequest } from "../../context/AuthProvider/util"
+import './styles.css'
 
 export const Register = () =>{
     const auth = useAuth()
@@ -52,8 +53,6 @@ export const Register = () =>{
                     </Form.Item>
                     <Form.Item wrapperCol={{offset:8,span:16}}>
                         <Button type='primary' htmlType='submit'>Create</Button>
-                    </Form.Item>
-                    <Form.Item wrapperCol={{offset:12,span:16}}>
                         <Button type='primary' htmlType='button' onClick={CancelHandle}>Cancel</Button>
                     </Form.Item>
                 </Form>

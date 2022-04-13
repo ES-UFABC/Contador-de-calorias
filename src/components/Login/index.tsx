@@ -1,6 +1,7 @@
 import { Button, Form, Input, Row, message, Col } from "antd"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../context/AuthProvider/useAuth"
+import './styles.css'
 
 export const Login = () =>{
     const auth = useAuth()
@@ -47,10 +48,10 @@ export const Login = () =>{
                     </Form.Item>
                     <Form.Item wrapperCol={{offset:8,span:16}}>
                         <Button type='primary' htmlType='submit'>Sign In</Button>
-                    </Form.Item>
-                    <Form.Item wrapperCol={{offset:12,span:16}}>
+                        
                         <Button type='primary' htmlType='button' onClick={RegisterHandle}>Sign Up</Button>
                     </Form.Item>
+                    
                 </Form>
             </Col>
         </Row>
