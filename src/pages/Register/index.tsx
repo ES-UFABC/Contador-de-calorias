@@ -1,7 +1,7 @@
 import { Button, Form, Input, Row, message, Col } from "antd"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../context/AuthProvider/useAuth"
-import { LoginRequest } from "../../context/AuthProvider/util"
+import { RegisterRequest } from "../../context/AuthProvider/util"
 import './styles.css'
 
 export const Register = () =>{
@@ -9,7 +9,7 @@ export const Register = () =>{
     const navigate = useNavigate();
     async function onFinish(values:{userName:string,password:string}){
         try{
-            await LoginRequest(values.userName,values.password);
+            await RegisterRequest(values.userName,values.password);
 
             await auth.authenticate(values.userName,values.password);
 
