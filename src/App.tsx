@@ -1,10 +1,9 @@
-import Rotas from './rotas';
 import Header from "./components/Header";
 import { AuthProvider } from './context/AuthProvider';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { ProtectedLayout } from './components/Protected';
 import { Login } from './components/Login';
-import Sobre from './pages/Sobre';
+import About from './pages/About';
 import NotFound from './pages/NotFound';
 import { Register } from './pages/Register';
 
@@ -18,7 +17,7 @@ function App() {
             <ProtectedLayout>
               <div>
                 <Header/>
-                <Sobre/>
+                <About/>
               </div>
             </ProtectedLayout>
             }/>
