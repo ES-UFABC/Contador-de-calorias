@@ -6,11 +6,12 @@ import './styles.css'
 export const Login = () =>{
     const auth = useAuth()
     const navigate = useNavigate();
+
     async function onFinish(values:{userName:string,password:string}){
         try{
             await auth.authenticate(values.userName,values.password)
 
-            navigate('/profile')
+            navigate('/home')
         }catch(error){
             message.error('Invalid UserName or password')
         }

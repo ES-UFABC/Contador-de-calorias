@@ -6,14 +6,22 @@ import { Login } from './components/Login';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
 import { Register } from './pages/Register';
+import Home from "./pages/Home";
 
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path='/profile' element={
-            
+        <Route path='/home' element={
+            <ProtectedLayout>
+              <div>
+                <Header/>
+                <Home/>
+              </div>
+            </ProtectedLayout>
+            }/>
+          <Route path='/about' element={
             <ProtectedLayout>
               <div>
                 <Header/>
@@ -22,8 +30,7 @@ function App() {
             </ProtectedLayout>
             }/>
             <Route
-              path="/"
-              element={<Navigate to="/login" replace />}
+              path="/" element={<Navigate to="/login" replace />}
             />
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/>

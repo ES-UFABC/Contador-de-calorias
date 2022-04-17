@@ -7,13 +7,14 @@ import './styles.css'
 export const Register = () =>{
     const auth = useAuth()
     const navigate = useNavigate();
+
     async function onFinish(values:{userName:string,password:string}){
         try{
             await RegisterRequest(values.userName,values.password);
 
             await auth.authenticate(values.userName,values.password);
 
-            navigate('/profile');
+            navigate('/home');
         }catch(error){
             message.error('It was not possible to register a new user. Try again later');
 
