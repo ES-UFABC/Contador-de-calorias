@@ -14,9 +14,14 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/profile' element={
+            
             <ProtectedLayout>
-              <Sobre/>
-            </ProtectedLayout>}/>
+              <div>
+                <Header/>
+                <Sobre/>
+              </div>
+            </ProtectedLayout>
+            }/>
             <Route
               path="/"
               element={<Navigate to="/login" replace />}
