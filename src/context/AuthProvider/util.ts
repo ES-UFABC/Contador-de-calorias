@@ -26,8 +26,6 @@ export async function LoginRequest(userName:string,password:string){
         //const request = await Api.post('api/auth/v1/signin',data);
         const request = await Api.post('verifyUsername',data);
         localStorage.setItem('userName',userName);
-        console.log(request)
-        console.log(request.data)
         localStorage.setItem('token',request.data.token);
         return request.data;
     }catch(error){

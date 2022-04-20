@@ -5,7 +5,6 @@ export default function Home(){
     const [foods,setFoods] = useState([]);
 
     const token = localStorage.getItem('token');
-    console.log(token)
 
     const authorization = {
         headers: {
@@ -13,21 +12,21 @@ export default function Home(){
         }
     }
 
-    async function fetchFoods(){
+   useEffect(()=>{
+    async function chargeFoods(){
         const response = await Api.get("getFoods",authorization);
-        setFoods(response.data.list);
+        setFoods(response.data);
         console.log(response);
         console.log(foods); 
     }
-
-    //useEffect(()=>{
-   //     fetchFoods();
-   // },[foods]);
+    
+    chargeFoods();
+    },[]);
 
     return(
         <div>
             <h1>Home</h1>
-            <button onClick={fetchFoods}>Foods List</button>
+            <button>Foods List</button>
 
         </div>
     );
