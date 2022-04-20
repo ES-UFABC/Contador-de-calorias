@@ -26,7 +26,6 @@ export default function Header(){
                         <img className="img" src={logo} alt="Logo"/>                        
                     </div>
 
-                    <span>Welcome, <strong>{userName !== null ? userName.toUpperCase():''}</strong>!</span>
                     <div className="topicos">
                         <p>Home</p>                  
                     </div>
@@ -40,8 +39,12 @@ export default function Header(){
                     </div>
 
 
-                    <button onClick={logout}>Logout</button>
                 </div>
+                    <span style={{position: 'absolute', right: 100, top: 75}}>Welcome, <strong>{userName !== null ? userName.toUpperCase():''}</strong>!</span>
+
+                    <button className="logbutton" style={{position: 'absolute', right: 10, top: 75}} onClick={logout}>Logout</button>
+
+
             </section>
 
         </header>
