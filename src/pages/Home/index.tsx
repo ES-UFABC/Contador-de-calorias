@@ -1,4 +1,4 @@
-import { useState, useEffect, SetStateAction } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Api } from "../../services/api";
 import { Select } from "antd";
 import {FaTrash} from 'react-icons/fa';
@@ -23,15 +23,6 @@ export default function Home(){
         }
     }
 
-    //function handleInputChange(e: SetStateAction<IFood[]>){
-    /*function handleInputChange(e:IFood){
-        console.log('1---')
-        console.log(e)
-        //console.log(e.target)
-        //console.log(e.target.value)
-        console.log('2---')
-        setMyFoods([...myFoods,e]);
-    }*/
     function handleInputChange(e:string){
         const food = allFoods.find(r => r.name === e);
         if(!food){
@@ -40,18 +31,23 @@ export default function Home(){
         setMyFoods([...myFoods,food]);
     }
 
+    const handleDelete = useCallback((repo)=>{
+        const find = myFoods.filter(r => r.name !== repo);
+        setMyFoods(find);
+    },[myFoods]);
 
-   useEffect(()=>{
+
+    useEffect(()=>{
     async function chargeFoods(){
         const response = await Api.get("getFoods",authorization);
         setAllFoods(response.data);
     } 
     chargeFoods();
     },[]);
-    console.log('3---')
+    console.log('1---')
     console.log(allFoods)
     console.log(myFoods)
-    console.log('4---')
+    console.log('2---')
     return(
         <div>
             <h1>Home</h1>
@@ -62,7 +58,6 @@ export default function Home(){
                                value={food.name} 
                                >
                     {food.name}
-                    {/*<button onClick={()=>handleInputChange(food)}>+</button>*/}
                 </Select.Option>
                 )};
             </Select>
@@ -70,7 +65,7 @@ export default function Home(){
                 {myFoods.map(food=>(
                     <li key={food.name}>
                         <span>
-                            <DeleteButton onClick={()=>{}}>
+                            <DeleteButton onClick={()=>handleDelete(food.name)}>
                                 <FaTrash size={14} />
                             </DeleteButton>
                             {food.name}
