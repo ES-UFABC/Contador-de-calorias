@@ -77,7 +77,9 @@ export default function Home(){
             <button>Calcular</button>
             <br/>
             <br/>
-            <Select  onChange={e=>handleInputChange(e)}>
+            <Select  
+                onChange={e=>handleInputChange(e)}
+                style={{ width: 250 }}>
             
                 {allFoods.map(food =>
                 <Select.Option key={food.name} 
