@@ -67,14 +67,29 @@ export default function Home(){
     } 
     chargeFoods();
     },[]);
+
+    async function handleCalculate(){
+        const data = {
+            myFoods,
+        };
+        try{
+            //const request = await Api.post('calculate',data);
+            console.log(myFoods)
+            //return request.data;
+        }catch(error){
+            throw new Error('Falha ao solicitar calculo');
+        }
+    }
+
     console.log('1---')
     console.log(allFoods)
     console.log(myFoods)
     console.log('2---')
+
     return(
         <div>
             <h1>Home</h1>
-            <button>Calcular</button>
+            <button onClick={()=>{handleCalculate()}}>Calcular</button>
             <br/>
             <br/>
             <Select  
