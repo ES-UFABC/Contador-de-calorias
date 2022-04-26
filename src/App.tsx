@@ -7,6 +7,7 @@ import About from './pages/About';
 import NotFound from './pages/NotFound';
 import { Register } from './pages/Register';
 import Home from "./pages/Home";
+import Historic from "./pages/Historic";
 
 function App() {
   return (
@@ -26,6 +27,14 @@ function App() {
               <div>
                 <Header/>
                 <About/>
+              </div>
+            </ProtectedLayout>
+            }/>
+            <Route path='/historic' element={
+            <ProtectedLayout>
+              <div>
+                <Header/>
+                <Historic/>
               </div>
             </ProtectedLayout>
             }/>

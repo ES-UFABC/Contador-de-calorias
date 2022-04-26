@@ -73,7 +73,7 @@ export default function Home(){
         const data = {
             myFoods,
         };
-        console.log(JSON.stringify(data, null, 2))
+        //console.log(JSON.stringify(data, null, 2))
         try{
             //const request = await Api.post('calculate',data,authorization);
             console.log(myFoods)
@@ -83,10 +83,8 @@ export default function Home(){
         }
     }
 
-    console.log('1---')
-    console.log(allFoods)
-    console.log(myFoods)
-    console.log('2---')
+    //console.log(allFoods)
+    //console.log(myFoods)
 
     return(
         <div>

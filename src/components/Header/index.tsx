@@ -1,6 +1,7 @@
 import "./styles.css";
 import logo from "../../assets/Logo-2.png";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Header(){
     const userName = localStorage.getItem('userName');
@@ -27,15 +28,21 @@ export default function Header(){
                     </div>
 
                     <div className="topicos">
-                        <p>Home</p>                  
+                        <Link to="/home">
+                            <p>Home</p>   
+                        </Link>               
                     </div>
 
                     <div className="topicos">
-                        <p>Sobre</p>                  
+                        <Link to="/about">
+                            <p>Sobre</p> 
+                        </Link>                 
                     </div>
 
                     <div className="topicos">
-                        <p>Historico</p>                  
+                        <Link to="/historic">
+                            <p>Historico</p>     
+                        </Link>             
                     </div>
 
 
