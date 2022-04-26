@@ -9,7 +9,8 @@ export interface IFood{
     cal_val: number,
     carbo_val: number,
     lip_val: number,
-    prot_val: number
+    prot_val: number,
+    unity: string
 }
 export interface IMyFood extends IFood{
     quantidade: number
@@ -39,6 +40,7 @@ export default function Home(){
             carbo_val: food.carbo_val,
             lip_val: food.lip_val,
             prot_val: food.prot_val,
+            unity: food.unity,
             quantidade: 1
         }
         setMyFoods([...myFoods,data]);
@@ -56,8 +58,7 @@ export default function Home(){
 
     const handleMinus = useCallback((repo)=>{
         setGambiarra(gambiarra-1);
-        if(repo.quantidade >=1)
-        repo.quantidade -= 1; 
+        if(repo.quantidade >1) repo.quantidade -= 1; 
     },[gambiarra]);
 
     useEffect(()=>{
@@ -72,8 +73,9 @@ export default function Home(){
         const data = {
             myFoods,
         };
+        console.log(JSON.stringify(data, null, 2))
         try{
-            //const request = await Api.post('calculate',data);
+            //const request = await Api.post('calculate',data,authorization);
             console.log(myFoods)
             //return request.data;
         }catch(error){
@@ -118,7 +120,7 @@ export default function Home(){
                             <Button onClick={()=>handleDelete(food.name)}>
                                 <FaTrash size={14} />
                             </Button>
-                            {food.name}
+                            {food.name} ( {food.unity} )
                         </span>
                     </li>
                 ))}
