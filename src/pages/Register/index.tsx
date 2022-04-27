@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../context/AuthProvider/useAuth"
 import { RegisterRequest } from "../../context/AuthProvider/util"
 import './styles.css'
+import logo from "../../assets/Logo-2.png";
 
 export const Register = () =>{
     const auth = useAuth()
@@ -28,33 +29,43 @@ export const Register = () =>{
 
     return (
         <Row
+        className="container2"
         justify="center"
         align="middle"
         style={{
             height: '100vh'
         }}>
             <Col span={12}>
+
+                <Form.Item className="imagbox">
+                    <img className="imag" src={logo} alt="Logo"/>
+                </Form.Item>
+
+                <Form.Item className="titulo">
+                    <h1>Cadastro</h1>
+                </Form.Item>
+
                 <Form
                 name='basic'
-                labelCol={{span:8}}
+                labelCol={{span:5}}
                 wrapperCol={{span:16}}
                 onFinish={onFinish}
                 >
                     <Form.Item
-                        label='Digit the username:'
+                        label='Digite o usuário:'
                         name='userName'
                     >
                         <Input/>
                     </Form.Item>
                     <Form.Item
-                        label='Digit the password:'
+                        label='Digite a senha:'
                         name='password'
                     >
                         <Input.Password/>
                     </Form.Item>
-                    <Form.Item wrapperCol={{offset:8,span:16}}>
-                        <Button type='primary' htmlType='submit'>Create</Button>
-                        <Button type='primary' htmlType='button' onClick={CancelHandle}>Cancel</Button>
+                    <Form.Item wrapperCol={{offset:5,span:16}}>
+                        <Button type='primary' htmlType='submit'>Criar</Button>
+                        <Button className="Button" type='primary' htmlType='button' onClick={CancelHandle}>Cancelar</Button>
                     </Form.Item>
                 </Form>
             </Col>

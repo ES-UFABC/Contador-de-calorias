@@ -64,9 +64,16 @@ export default function Home(){
     useEffect(()=>{
     async function chargeFoods(){
         const response = await Api.get("getFoods",authorization);
+<<<<<<< HEAD
         setAllFoods(response.data);
     } 
+=======
+        setFoods(response.data);
+        console.log(response);
+        console.log(response); 
+    }
     
+>>>>>>> login-style
     chargeFoods();
     },[]);
 
@@ -91,6 +98,7 @@ export default function Home(){
     return(
         <div>
             <h1>Home</h1>
+<<<<<<< HEAD
             <button onClick={()=>{handleCalculate()}}>Calcular</button>
             <br/>
             <br/>
@@ -125,6 +133,14 @@ export default function Home(){
                     </li>
                 ))}
             </List>
+=======
+            <h2>teste</h2>
+            <section>
+                <option>Foods List</option>
+            </section>
+            
+
+>>>>>>> login-style
         </div>
     );
 }
