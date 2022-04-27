@@ -1,0 +1,20 @@
+.Button {margin: 20px;}
+
+.container3{
+    background: linear-gradient(rgb(255,222,89), transparent)
+}
+
+.imagbox{
+    vertical-align: middle;
+    text-align: center;
+}
+
+.imag{
+    width: 153px;
+    padding: 3px;
+    background-color: black;
+}
+
+.titulo{
+    text-align: center;
+}
