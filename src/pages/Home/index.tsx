@@ -75,8 +75,9 @@ export default function Home(){
         };
         //console.log(JSON.stringify(data, null, 2))
         try{
-            //const request = await Api.post('calculate',data,authorization);
-            console.log(myFoods)
+            const request = await Api.post('calculate',data,authorization);
+            //console.log(myFoods)
+            console.log(request)
             //return request.data;
         }catch(error){
             throw new Error('Falha ao solicitar calculo');
