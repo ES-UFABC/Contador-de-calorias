@@ -17,7 +17,7 @@ export default function Home(){
         const response = await Api.get("getFoods",authorization);
         setFoods(response.data);
         console.log(response);
-        console.log(foods); 
+        console.log(response); 
     }
     
     chargeFoods();
@@ -26,7 +26,11 @@ export default function Home(){
     return(
         <div>
             <h1>Home</h1>
-            <button>Foods List</button>
+            <h2>teste</h2>
+            <section>
+                <option>Foods List</option>
+            </section>
+            
 
         </div>
     );

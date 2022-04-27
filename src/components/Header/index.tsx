@@ -17,7 +17,7 @@ export default function Header(){
     }
 
     return(
-        <header className="container">
+        <header className="container5">
             <h1 className="nome-proj">Contador de Calorias</h1>
 
             <section>
@@ -38,13 +38,10 @@ export default function Header(){
                         <p>Historico</p>                  
                     </div>
 
-
                 </div>
-                    <span style={{position: 'absolute', right: 100, top: 75}}>Welcome, <strong>{userName !== null ? userName.toUpperCase():''}</strong>!</span>
+                    <span style={{position: 'absolute', right: 100, top: 90}}>Welcome, <strong>{userName !== null ? userName.toUpperCase():''}</strong>!</span>
 
                     <button className="logbutton" style={{position: 'absolute', right: 10, top: 75}} onClick={logout}>Logout</button>
-
-
             </section>
 
         </header>
