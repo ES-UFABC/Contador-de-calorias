@@ -1,4 +1,4 @@
-import { Button, Form, Input, Row, message, Col } from "antd"
+import { Button, Form, Input, Row, message, Col, Select, InputNumber } from "antd"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../context/AuthProvider/useAuth"
 import { RegisterRequest } from "../../context/AuthProvider/util"
@@ -9,9 +9,13 @@ export const Register = () =>{
     const auth = useAuth()
     const navigate = useNavigate();
 
-    async function onFinish(values:{userName:string,password:string}){
+    const { Option } = Select;
+
+    async function onFinish(values:{userName:string,password:string,
+    height:number,weight:number,gender:string}){
         try{
-            await RegisterRequest(values.userName,values.password);
+            await RegisterRequest(values.userName,values.password,
+                values.height,values.weight,values.gender);
 
             await auth.authenticate(values.userName,values.password);
 
@@ -54,14 +58,41 @@ export const Register = () =>{
                     <Form.Item
                         label='Digite o usuário:'
                         name='userName'
+                        rules={[{ required: true }]}
                     >
                         <Input/>
                     </Form.Item>
                     <Form.Item
                         label='Digite a senha:'
                         name='password'
+                        rules={[{ required: true }]}
                     >
                         <Input.Password/>
+                    </Form.Item>
+                    <Form.Item
+                        label='Digite sua altura:'
+                        name='height'
+                        rules={[{ required: true }]}
+                    >
+                        <InputNumber />
+                    </Form.Item>
+                    <Form.Item
+                        label='Digite seu peso:'
+                        name='weight'
+                        rules={[{ required: true }]}
+                    >
+                        <InputNumber />
+                    </Form.Item>
+                    <Form.Item name="gender" label="Gênero" rules={[{ required: true }]}>
+                        <Select
+                        placeholder="Select a option and change input text above"
+                        onChange={()=>{}}
+                        allowClear
+                        >
+                            <Option value="male">male</Option>
+                            <Option value="female">female</Option>
+                            {/*<Option value="other">other</Option>*/}
+                        </Select>
                     </Form.Item>
                     <Form.Item wrapperCol={{offset:5,span:16}}>
                         <Button type='primary' htmlType='submit'>Criar</Button>

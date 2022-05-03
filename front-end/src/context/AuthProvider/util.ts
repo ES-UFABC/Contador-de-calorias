@@ -33,10 +33,14 @@ export async function LoginRequest(userName:string,password:string){
     }
 }
 
-export async function RegisterRequest(userName:string,password:string){
+export async function RegisterRequest(userName:string,password:string,
+    height:number,weight:number,gender:string){
     const data = {
         userName,
         password,
+        height,
+        weight,
+        gender
     };
     try{
         const request = await Api.post('register',data);
