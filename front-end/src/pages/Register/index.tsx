@@ -11,10 +11,10 @@ export const Register = () =>{
 
     const { Option } = Select;
 
-    async function onFinish(values:{userName:string,password:string,
+    async function onFinish(values:{userName:string,password:string,age:number,
     height:number,weight:number,gender:string}){
         try{
-            await RegisterRequest(values.userName,values.password,
+            await RegisterRequest(values.userName,values.password,values.age,
                 values.height,values.weight,values.gender);
 
             await auth.authenticate(values.userName,values.password);
@@ -68,6 +68,13 @@ export const Register = () =>{
                         rules={[{ required: true }]}
                     >
                         <Input.Password/>
+                    </Form.Item>
+                    <Form.Item
+                        label='Digite sua idade:'
+                        name='age'
+                        rules={[{ required: true }]}
+                    >
+                        <InputNumber />
                     </Form.Item>
                     <Form.Item
                         label='Digite sua altura:'
