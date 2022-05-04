@@ -1,0 +1,255 @@
+{"arroz-carreteiro": {"url": "1755-arroz-carreteiro",
+    "measure": "gramas",
+    "unity": "colher (sopa) cheia"
+    },
+   "arroz-branco-cozido": {"url": "1755-arroz-branco-cozido",
+    "measure": "gramas",
+    "unity": "colher (sopa) cheia"
+    },
+   "ovo-de-galinha-inteiro-cozido": {"url": "1735-ovo-de-galinha-inteiro-cozido",
+    "measure": "unidade",
+    "unity": "unidade média"
+    },
+   "banana-prata": {"url": "2068-banana-prata",
+    "measure": "unidade",
+    "unity": "unidade média"
+    },
+   "banana-nanica-caturra": {"url": "78-banana-nanica-caturra",
+    "measure": "unidade",
+    "unity": "unidade média"
+    },
+   "banana-maçã": {"url": "1217-banana-maçã",
+    "measure": "unidade",
+    "unity": "unidade média"
+    },
+   "filé-de-frango-grelhado": {"url": "381-filé-de-frango-grelhado",
+    "measure": "gramas",
+    "unity": "filé médio"
+    },
+   "feijão-cozido": {"url": "1940-feijão-cozido",
+    "measure": "gramas",
+    "unity": "colher (sopa) cheia"
+    },
+   "batata-doce-cozida": {"url": "1861-batata-doce-cozida",
+    "measure": "gramas",
+    "unity": "fatia"
+    },
+   "farelo-de-aveia": {"url": "349-farelo-de-aveia",
+    "measure": "gramas",
+    "unity": "colher (sopa) cheia"
+    },
+   "tomate": {"url": "2031-tomate",
+    "measure": "gramas",
+    "unity": "unidade pequena"
+    },
+   "maçã-vermelha": {"url": "509-maçã-vermelha",
+    "measure": "unidade",
+    "unity": "unidade média"
+    },
+   "biscoito-integral": {"url": "132-biscoito-integral",
+    "measure": "gramas",
+    "unity": "unidade"
+    },
+   "pão-francês-integral": {"url": "69832-pão-francês-integral",
+    "measure": "unidade",
+    "unity": "unidade"
+    },
+   "arroz-integral-cru": {"url": "1449-arroz-integral-cru",
+    "measure": "gramas",
+    "unity": "copo requeijão"
+    },
+   "arroz-parboilizado-cru": {"url": "56-arroz-parboilizado-cru",
+    "measure": "gramas",
+    "unity": "xícara"
+    },
+   "cenoura-cozida": {"url": "215-cenoura-cozida",
+    "measure": "gramas",
+    "unity": "colher (sopa) picada"
+    },
+   "cenoura-crua": {"url": "216-cenoura-crua",
+    "measure": "gramas",
+    "unity": "colher (sopa) ralada"
+    },
+   "alface-americana": {"url": "1493-alface-americana",
+    "measure": "gramas",
+    "unity": "folha média"
+    },
+   "alface": {"url": "1966-alface", "measure": "gramas", "unity": "folha média"
+    },
+   "alface-lisa": {"url": "35-alface-lisa",
+    "measure": "gramas",
+    "unity": "folha média"
+    },
+   "alface-mimosa": {"url": "130523-alface-mimosa",
+    "measure": "gramas",
+    "unity": "folha média"
+    },
+   "alface-crespa": {"url": "34-alface-crespa",
+    "measure": "gramas",
+    "unity": "folha média"
+    },
+   "carne-bovina-patinho-grelhado": {"url": "111137-carne-bovina-patinho-grelhado",
+    "measure": "gramas",
+    "unity": "bife médio"
+    },
+   "carne-bovina-músculo-cozido": {"url": "1040-carne-bovina-músculo-cozido",
+    "measure": "gramas",
+    "unity": "pedaço médio"
+    },
+   "queijo-minas-frescal": {"url": "104025-queijo-minas-frescal-santa-clara",
+    "measure": "gramas",
+    "unity": "colher (sopa)"
+    },
+   "queijo-parmesão-ralado-light": {"url": "1791-queijo-parmesão-ralado-light-faixa-azul-vigor",
+    "measure": "gramas",
+    "unity": "colher (sopa)"
+    },
+   "queijo-processado-polenguinho": {"url": "741-queijo-processado-polenguinho-polenghi",
+    "measure": "gramas",
+    "unity": "unidade"
+    },
+   "queijo-tipo-mussarela-de-búfala": {"url": "759-queijo-tipo-mussarela-de-búfala",
+    "measure": "gramas",
+    "unity": "unidade"
+    },
+   "croissant-de-queijo": {"url": "310-croissant-de-queijo",
+    "measure": "gramas",
+    "unity": "unidade média"
+    },
+   "queijo-de-soja-tofu": {"url": "1961-queijo-de-soja-tofu",
+    "measure": "gramas",
+    "unity": "fatia pequena"
+    },
+   "queijo-tipo-brie": {"url": "742-queijo-tipo-brie",
+    "measure": "gramas",
+    "unity": "pedaço"
+    },
+   "queijo-tipo-prato": {"url": "760-queijo-tipo-prato",
+    "measure": "gramas",
+    "unity": "fatia média"
+    },
+   "queijo-tipo-cheddar": {"url": "744-queijo-tipo-cheddar",
+    "measure": "gramas",
+    "unity": "fatia média"
+    },
+   "queijo-tipo-suíço": {"url": "762-queijo-tipo-suíço",
+    "measure": "gramas",
+    "unity": "fatia média"
+    },
+   "queijo-tipo-parmesão": {"url": "758-queijo-tipo-parmesão",
+    "measure": "gramas",
+    "unity": "fatia média"
+    },
+   "queijo-tipo-mussarela": {"url": "757-queijo-tipo-mussarela",
+    "measure": "gramas",
+    "unity": "fatia média"
+    },
+   "feijão-de-corda": {"url": "121117-feijão-de-corda",
+    "measure": "gramas",
+    "unity": "colher (sopa) cheia"
+    },
+   "feijão-fradinho-cozido": {"url": "1761-feijão-fradinho-cozido",
+    "measure": "gramas",
+    "unity": "colher (sopa) cheia"
+    },
+   "feijão-carioca-cozido": {"url": "1759-feijão-carioca-cozido",
+    "measure": "gramas",
+    "unity": "colher (sopa) cheia"
+    },
+   "feijão-jalo-cozido": {"url": "1763-feijão-jalo-cozido",
+    "measure": "gramas",
+    "unity": "colher (sopa) cheia"
+    },
+   "feijão-verde": {"url": "117773-feijão-verde",
+    "measure": "gramas",
+    "unity": "colher (sopa)"
+    },
+   "peito-de-frango-sem-pele-grelhado": {"url": "1687-peito-de-frango-sem-pele-grelhado",
+    "measure": "gramas",
+    "unity": "filé médio"
+    },
+   "peito-de-frango-cru": {"url": "1256-peito-de-frango-cru",
+    "measure": "gramas",
+    "unity": "filé médio"
+    },
+   "frango-à-passarinho": {"url": "392-frango-à-passarinho",
+    "measure": "gramas",
+    "unity": "pedaço médio"
+    },
+   "linguiça-frango-crua": {"url": "1694-linguiça-frango-crua",
+    "measure": "gramas",
+    "unity": "gomo"
+    },
+   "almôndega-de-frango": {"url": "1205-almôndega-de-frango-sadia",
+    "measure": "gramas",
+    "unity": "unidade"
+    },
+   "filé-de-frango-à-milanesa": {"url": "380-filé-de-frango-à-milanesa",
+    "measure": "gramas",
+    "unity": "unidade média"
+    },
+   "macarrão-espaguete": {"url": "137538-macarrão-espaguete-galo",
+    "measure": "gramas",
+    "unity": "porção"
+    },
+   "macarrão-parafuso": {"url": "63642-macarrão-parafuso-galo",
+    "measure": "gramas",
+    "unity": "xícara"
+    },
+   "macarrão-integral": {"url": "2114-macarrão-integral-cozido",
+    "measure": "gramas",
+    "unity": "pegador"
+    },
+   "laranja-pêra": {"url": "1557-laranja-pêra-",
+    "measure": "gramas",
+    "unity": "unidade média"
+    },
+   "laranja-baía": {"url": "1548-laranja-baía-",
+    "measure": "gramas",
+    "unity": "unidade média"
+    },
+   "laranja-lima": {"url": "1552-laranja-lima",
+    "measure": "gramas",
+    "unity": "unidade média"
+    },
+   "batata-inglesa-frita": {"url": "89-batata-inglesa-frita",
+    "measure": "gramas",
+    "unity": "escumadeira média"
+    },
+   "purê-de-batata": {"url": "730-purê-de-batata",
+    "measure": "gramas",
+    "unity": "colher (sopa) cheia"
+    },
+   "nhoque-de-batata": {"url": "592-nhoque-de-batata",
+    "measure": "gramas",
+    "unity": "colher (sopa) cheia"
+    },
+   "pão-de-batata": {"url": "626-pão-de-batata",
+    "measure": "gramas",
+    "unity": "unidade comercial"
+    },
+   "batata-inglesa-cozida": {"url": "87-batata-inglesa-cozida",
+    "measure": "gramas",
+    "unity": "colher (sopa) picada"
+    },
+   "amendoim-japonês": {"url": "114537-amendoim-japonês-santa-helena",
+    "measure": "gramas",
+    "unity": "porção"
+    },
+   "amendoim-cozido": {"url": "1912-amendoim-cozido",
+    "measure": "gramas",
+    "unity": "unidade"
+    },
+   "pão-de-forma-light": {"url": "127699-pão-de-forma-light-pão-nino",
+    "measure": "gramas",
+    "unity": "fatia"
+    },
+   "pão-de-forma": {"url": "1831-pão-de-forma-nutrella",
+    "measure": "gramas",
+    "unity": "fatia"
+    },
+   "brócolis-cozido": {"url": "176-brócolis-cozido",
+    "measure": "gramas",
+    "unity": "colher (sopa) cheia"
+    }
+}
