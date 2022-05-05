@@ -154,15 +154,15 @@ export default function Home(){
                 <br/>
                 <p><strong>Taxa metabólica basal (Kcal):</strong> {answer.Taxa_metabolica_Basal_Kcal}</p>
                 <br/>
-                <p><strong>Valores Ideais de Consumo </strong></p>
-                <p>Carboidratos: { answer.Calorias_de_Carboidratos_Ideal_Kcal } (Kcal) / {answer.Quantidade_de_Carboidratos_Ideal_g} g</p>
-                <p>Gorduras: {answer.Calorias_de_Gorduras_Ideal_Kcal} (Kcal) / {answer.Quantidade_de_Gorduras_Ideal_g} g</p>
-                <p>Proteínas: {answer.Calorias_de_Proteinas_Ideal_Kcal} (Kcal) / {answer.Quantidade_de_Proteinas_Ideal_g} g</p>
-                <br/>
-                <p><strong>Valores Consumidos</strong></p>
+                <p><strong>Valores Consumidos </strong></p>
                 <p>Carboidratos: {answer.Variação_de_Carboidratos_Kcal} (Kcal) / {answer.Variação_de_Carboidratos_g} g</p>
                 <p>Gorduras: {answer.Variação_de_Gorduras_Kcal} (Kcal) / {answer.Variação_de_Gorduras_g} g</p>
                 <p>Proteínas: {answer.Variação_de_Proteinas_Kcal} (Kcal) / {answer.Variação_de_Proteinas_g} g</p>
+                <br/>
+                <p><strong>Valores Ideais de Consumo</strong></p>
+                <p>Carboidratos: { answer.Calorias_de_Carboidratos_Ideal_Kcal } (Kcal) / {answer.Quantidade_de_Carboidratos_Ideal_g} g</p>
+                <p>Gorduras: {answer.Calorias_de_Gorduras_Ideal_Kcal} (Kcal) / {answer.Quantidade_de_Gorduras_Ideal_g} g</p>
+                <p>Proteínas: {answer.Calorias_de_Proteinas_Ideal_Kcal} (Kcal) / {answer.Quantidade_de_Proteinas_Ideal_g} g</p>
             </div>:<></>}
 
         </div>
