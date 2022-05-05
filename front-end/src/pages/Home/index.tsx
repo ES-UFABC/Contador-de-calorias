@@ -16,27 +16,28 @@ export interface IMyFood extends IFood{
     quantidade: number
 }
 
-/*export interface Answer{
-    Calorias de Carboidratos Ideal (Kcal)": 991
-    Calorias de Gorduras Ideal (Kcal)": 594
-    Calorias de Proteinas Ideal (Kcal)": 396
-    Quantidade de Carboidratos Ideal (g)": 247.75
-    Quantidade de Gorduras Ideal (g)": 220.27
-    Quantidade de Proteinas Ideal (g)": 495.6
-    Taxa metabolica Basal (Kcal)": 1982.3999999999999
-    Variação de Carboidratos (Kcal)": 932
-    Variação de Carboidratos (g)": 233
-    Variação de Gorduras (Kcal)": 554.85
-    Variação de Gorduras (g)": 215.65
-    Variação de Proteinas (Kcal)": 
-    Variação de Proteinas (g)": 
-}*/
+export interface Answer{
+    Calorias_de_Carboidratos_Ideal_Kcal: number,
+    Calorias_de_Gorduras_Ideal_Kcal: number,
+    Calorias_de_Proteinas_Ideal_Kcal: number,
+    Quantidade_de_Carboidratos_Ideal_g: number,
+    Quantidade_de_Gorduras_Ideal_g: number,
+    Quantidade_de_Proteinas_Ideal_g: number,
+    Taxa_metabolica_Basal_Kcal: number,
+    Variação_de_Carboidratos_Kcal: number,
+    Variação_de_Carboidratos_g: number,
+    Variação_de_Gorduras_Kcal: number,
+    Variação_de_Gorduras_g: number,
+    Variação_de_Proteinas_Kcal: number,
+    Variação_de_Proteinas_g: number,
+    imc: number
+}
 
 export default function Home(){
     const [allFoods,setAllFoods] = useState<IFood[]>([]);
     const [myFoods, setMyFoods] = useState<IMyFood[]>([]);
     const [gambiarra,setGambiarra] = useState(1);
-    const [answer, setAnswer] = useState([]);
+    const [answer, setAnswer] = useState<Answer>();
 
     const token = localStorage.getItem('token');
 
@@ -104,9 +105,9 @@ export default function Home(){
 
     //console.log(allFoods)
     //console.log(myFoods)
-    console.log('answer:')
-    console.log(answer)
-    console.log(JSON.stringify(answer, null, 2))
+    //console.log('answer:')
+    //console.log(answer)
+    //console.log(JSON.stringify(answer, null, 2))
 
     return(
         <div>
@@ -148,25 +149,20 @@ export default function Home(){
             
             {(answer !== undefined && answer !== null)?
             <div>
-                <table>
-                    <thead>
-                        <tr>
-                        <th>First name</th>
-                        <th>Last name</th>
-                        <th>Password</th>
-                        <th>Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {answer.map(function (element) {
-                        return (
-                            <tr>
-                            <td>{ element }</td>
-                            </tr>
-                        );
-                        })}
-                    </tbody>
-                </table>
+                <br/>
+                <p><strong>IMC: </strong>{answer.imc}</p>
+                <br/>
+                <p><strong>Taxa metabólica basal (Kcal):</strong> {answer.Taxa_metabolica_Basal_Kcal}</p>
+                <br/>
+                <p><strong>Valores Ideais de Consumo </strong></p>
+                <p>Carboidratos: { answer.Calorias_de_Carboidratos_Ideal_Kcal } (Kcal) / {answer.Quantidade_de_Carboidratos_Ideal_g} g</p>
+                <p>Gorduras: {answer.Calorias_de_Gorduras_Ideal_Kcal} (Kcal) / {answer.Quantidade_de_Gorduras_Ideal_g} g</p>
+                <p>Proteínas: {answer.Calorias_de_Proteinas_Ideal_Kcal} (Kcal) / {answer.Quantidade_de_Proteinas_Ideal_g} g</p>
+                <br/>
+                <p><strong>Valores Consumidos</strong></p>
+                <p>Carboidratos: {answer.Variação_de_Carboidratos_Kcal} (Kcal) / {answer.Quantidade_de_Carboidratos_Ideal_g} g</p>
+                <p>Gorduras: {answer.Variação_de_Gorduras_Kcal} (Kcal) / {answer.Quantidade_de_Gorduras_Ideal_g} g</p>
+                <p>Proteínas: {answer.Variação_de_Proteinas_Kcal} (Kcal) / {answer.Quantidade_de_Proteinas_Ideal_g} g</p>
             </div>:<></>}
 
         </div>
