@@ -96,7 +96,7 @@ export default function Home(){
         try{
             const request = await Api.post('registerFood',data,authorization);
             //console.log(myFoods)
-            console.log(request)
+            //console.log(request)
             setAnswer(request.data);
         }catch(error){
             throw new Error('Falha ao solicitar calculo');
@@ -107,7 +107,7 @@ export default function Home(){
     //console.log(myFoods)
     //console.log('answer:')
     //console.log(answer)
-    //console.log(JSON.stringify(answer, null, 2))
+    console.log(JSON.stringify(answer, null, 2))
 
     return(
         <div>
@@ -160,36 +160,11 @@ export default function Home(){
                 <p>Proteínas: {answer.Calorias_de_Proteinas_Ideal_Kcal} (Kcal) / {answer.Quantidade_de_Proteinas_Ideal_g} g</p>
                 <br/>
                 <p><strong>Valores Consumidos</strong></p>
-                <p>Carboidratos: {answer.Variação_de_Carboidratos_Kcal} (Kcal) / {answer.Quantidade_de_Carboidratos_Ideal_g} g</p>
-                <p>Gorduras: {answer.Variação_de_Gorduras_Kcal} (Kcal) / {answer.Quantidade_de_Gorduras_Ideal_g} g</p>
-                <p>Proteínas: {answer.Variação_de_Proteinas_Kcal} (Kcal) / {answer.Quantidade_de_Proteinas_Ideal_g} g</p>
+                <p>Carboidratos: {answer.Variação_de_Carboidratos_Kcal} (Kcal) / {answer.Variação_de_Carboidratos_g} g</p>
+                <p>Gorduras: {answer.Variação_de_Gorduras_Kcal} (Kcal) / {answer.Variação_de_Gorduras_g} g</p>
+                <p>Proteínas: {answer.Variação_de_Proteinas_Kcal} (Kcal) / {answer.Variação_de_Proteinas_g} g</p>
             </div>:<></>}
 
         </div>
     );
 }
-/*{(answer !== undefined && answer !== null)?
-            <div>
-                <table>
-                    <thead>
-                        <tr>
-                        <th>First name</th>
-                        <th>Last name</th>
-                        <th>Password</th>
-                        <th>Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {answer.map(item => {
-                        return (
-                            <tr key={item.password}>
-                            <td>{ item.firstname }</td>
-                            <td>{ item.lastname }</td>
-                            <td>{ item.password }</td>
-                            <td>{ item.email }</td>
-                            </tr>
-                        );
-                        })}
-                    </tbody>
-                </table>
-            </div>:<></>} */
