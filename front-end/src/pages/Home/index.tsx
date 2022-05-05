@@ -16,10 +16,27 @@ export interface IMyFood extends IFood{
     quantidade: number
 }
 
+/*export interface Answer{
+    Calorias de Carboidratos Ideal (Kcal)": 991
+    Calorias de Gorduras Ideal (Kcal)": 594
+    Calorias de Proteinas Ideal (Kcal)": 396
+    Quantidade de Carboidratos Ideal (g)": 247.75
+    Quantidade de Gorduras Ideal (g)": 220.27
+    Quantidade de Proteinas Ideal (g)": 495.6
+    Taxa metabolica Basal (Kcal)": 1982.3999999999999
+    Variação de Carboidratos (Kcal)": 932
+    Variação de Carboidratos (g)": 233
+    Variação de Gorduras (Kcal)": 554.85
+    Variação de Gorduras (g)": 215.65
+    Variação de Proteinas (Kcal)": 
+    Variação de Proteinas (g)": 
+}*/
+
 export default function Home(){
     const [allFoods,setAllFoods] = useState<IFood[]>([]);
     const [myFoods, setMyFoods] = useState<IMyFood[]>([]);
     const [gambiarra,setGambiarra] = useState(1);
+    const [answer, setAnswer] = useState([]);
 
     const token = localStorage.getItem('token');
 
@@ -74,12 +91,12 @@ export default function Home(){
         const data = {
             myFoods,
         };
-        console.log(JSON.stringify(data, null, 2))
+        //console.log(JSON.stringify(data, null, 2))
         try{
             const request = await Api.post('registerFood',data,authorization);
             //console.log(myFoods)
             console.log(request)
-            //return request.data;
+            setAnswer(request.data);
         }catch(error){
             throw new Error('Falha ao solicitar calculo');
         }
@@ -87,6 +104,9 @@ export default function Home(){
 
     //console.log(allFoods)
     //console.log(myFoods)
+    console.log('answer:')
+    console.log(answer)
+    console.log(JSON.stringify(answer, null, 2))
 
     return(
         <div>
@@ -125,6 +145,55 @@ export default function Home(){
                     </li>
                 ))}
             </List>
+            
+            {(answer !== undefined && answer !== null)?
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Password</th>
+                        <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {answer.map(function (element) {
+                        return (
+                            <tr>
+                            <td>{ element }</td>
+                            </tr>
+                        );
+                        })}
+                    </tbody>
+                </table>
+            </div>:<></>}
+
         </div>
     );
 }
+/*{(answer !== undefined && answer !== null)?
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Password</th>
+                        <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {answer.map(item => {
+                        return (
+                            <tr key={item.password}>
+                            <td>{ item.firstname }</td>
+                            <td>{ item.lastname }</td>
+                            <td>{ item.password }</td>
+                            <td>{ item.email }</td>
+                            </tr>
+                        );
+                        })}
+                    </tbody>
+                </table>
+            </div>:<></>} */
