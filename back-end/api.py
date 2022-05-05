@@ -56,7 +56,7 @@ def verifyUsername():
   print(test2)
   test_pw = request.json['password']
   print(test_pw)
-  test3 = users_df[(users_df['username']==str(test2)) & (users_df['password']==int(test_pw))]
+  test3 = users_df[(users_df['username']==str(test2)) & (users_df['password']==int(test_pw))].copy()
   print(type(test3))
   if test3.shape[0]==0:
     return Response(status=401)
@@ -89,6 +89,21 @@ def registerUser():
     with open(r'users.csv', 'a') as f:
       writer = csv.writer(f, delimiter=";")
       writer.writerow(fields)
+
+    demo_df = pd.read_csv('demographics.csv', sep=";")
+
+    dtemp = {}
+    
+    dtemp['id'] = id
+    dtemp['height'] = int(request.json['height'])
+    dtemp['gender'] = str(request.json['gender'][0]).upper()
+    dtemp['age'] = int(request.json['age'])
+    dtemp['weight'] = int(request.json['weight'])
+    print(dtemp)
+    
+    demo_df = demo_df.append(dtemp, ignore_index = True)
+
+    demo_df.to_csv('demographics.csv', sep=";", index = False)
     return Response(status=200)
   else:
     return Response(status=400)
@@ -97,42 +112,101 @@ def registerUser():
 @app.route('/registerFood', methods=['POST'])
 @cross_origin()
 def registerFood(): 
+  from backend.macro_calculus import get_avg_macros
+  from datetime import datetime
   
   users_df = pd.read_csv('users.csv', delimiter=';')
-  username = request.json['userName']
-  users_id = users_df[users_df['username']==str(username)]['id'].values
-
-  del users_df, username
-
-  foods = list(request.keys())
-  foods = foods[foods!='userName']
-
-  temp = pd.DataFrame()
-
-  try:
-
-    for i, j in zip(foods, range(len(foods))):
-      
-      temp.iloc[j, :] = request[i]
+  logs_df = pd.read_csv('log.csv', delimiter=';')
+  demo_df = pd.read_csv('demographics.csv', delimiter=';')
+  token = request.headers['Authorization']
+  users_id = users_df[users_df['token']==int(token)]['id'].values[0]
   
-    log_df = pd.read_csv('log.csv')
+  del users_df
+
+  foods = request.json['myFoods']
   
-    log_id = log_df.log_id.max()+1
-    meal_id = log_df.query('id == {}'.format(users_id)).meal_id.max()+1
+  qtd_1 = []
+  cal_val = []
+  carbo_val = []
+  lip_val = []
+  prot_val = []
+  carbo_cals = []
+  lip_cals = []
+  prot_cals = [] 
+  today = []
+  logs = []
   
-    temp['log_id'] =[log_id for i in log_id.index]
-    temp['id'] =[users_id for i in log_id.index]
-    temp['meal_id'] =[meal_id for i in log_id.index]
+  
+  for i in range(len(foods)):
+
+    qtd =  int(foods[i]['quantidade'])   
+    qtd_1.append(int(foods[i]['quantidade']))
+    cal_val.append(float(foods[i]['cal_val'])*qtd)
+    carbo_val.append(float(foods[i]['carbo_val'])*qtd)
+    lip_val.append(float(foods[i]['lip_val'])*qtd)
+    prot_val.append(float(foods[i]['prot_val'])*qtd)
+    carbo_cals.append(float(foods[i]['carbo_val'])*4*qtd)
+    lip_cals.append(float(foods[i]['lip_val'])*9*qtd)
+    prot_cals.append(float(foods[i]['prot_val'])*4*qtd)
+    today.append(datetime.today())
+    z = int(logs_df['log_id'].max())+1+i
+    logs.append(z)
+
+  df_temp = pd.DataFrame()
+
+  if logs_df[logs_df['id'] == users_id].shape[0]>0:
+    meal_id = int(logs_df[logs_df['id'] == users_id]['log_id'].max())+1
+
+  else:
+    meal_id = 1
+
+  df_temp['log_id'] = logs
+  df_temp['id'] = [users_id]*len(foods)
+  df_temp['meal_id'] = [meal_id]*len(foods)
+  df_temp['weight'] = [demo_df[demo_df['id'] == users_id]['weight'].values[0]]*len(foods)
+  df_temp['qtd'] =  qtd_1
+  df_temp['protein'] = prot_val
+  df_temp['carbohydrate'] = carbo_val
+  df_temp['fat'] = lip_val
+  df_temp['calories'] = cal_val
+  df_temp['created_at'] = today
+
+  print(df_temp.columns, logs_df.columns)
+  logs_df = pd.concat([logs_df, df_temp])
+
+  logs_df.to_csv('log.csv', sep = ';', index = False)
+  weight = demo_df[demo_df['id'] == users_id]['weight'].values[0]
+  height = demo_df[demo_df['id'] == users_id]['height'].values[0]
+  age = demo_df[demo_df['id'] == users_id]['age'].values[0]
+  gender = demo_df[demo_df['id'] == users_id]['gender'].values[0]
+
+  avg_macro = get_avg_macros(weight, height, age, gender)
+
+  macros = {}
+  macros['imc'] = avg_macro.imc
+  macros['Taxa metabolica Basal (Kcal)'] = avg_macro.tmb
+  macros['Calorias de Carboidratos Ideal (Kcal)'] = avg_macro.carbo_cals
+  macros['Quantidade de Carboidratos Ideal (g)'] = avg_macro.carbo_g
+  macros['Calorias de Proteinas Ideal (Kcal)'] = avg_macro.prot_cals
+  macros['Quantidade de Proteinas Ideal (g)'] = avg_macro.prot_g
+  macros['Calorias de Gorduras Ideal (Kcal)'] = avg_macro.fat_cals
+  macros['Quantidade de Gorduras Ideal (g)'] = avg_macro.fat_g
+
+  macros['Variação de Carboidratos (Kcal)'] = int(avg_macro.carbo_cals) - int(sum(carbo_cals))
+  macros['Variação de Carboidratos (g)'] = int(avg_macro.carbo_g) - int(sum(carbo_val))
+  macros['Variação de Proteinas (Kcal)'] = int(avg_macro.prot_cals) - int(sum(prot_cals))
+  macros['Variação de Proteinas (g)'] = int(avg_macro.prot_g)  - sum(prot_val)
+  macros['Variação de Gorduras (Kcal)'] = int(avg_macro.fat_cals) - sum(lip_cals)
+  macros['Variação de Gorduras (g)'] = int(avg_macro.fat_g) - sum(lip_val)
+     
+  response = app.response_class(
+      response=json.dumps(macros),
+      #response=jsonify(resp),
+      status=200,
+      mimetype='application/json'
+    )
     
-  
-    log_df = pd.concat([log_df,temp])
-  
-    log_df = pd.to_csv('log.csv')
-    
-    return Response(status=200)
-
-  except:
-    return Response(status=400)
+  return response
 
 
 @app.route('/dropMeal', methods=['POST'])
