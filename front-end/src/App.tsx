@@ -8,6 +8,7 @@ import NotFound from './pages/NotFound';
 import { Register } from './pages/Register';
 import Home from "./pages/Home";
 import Historic from "./pages/Historic";
+import { EditUser } from "./pages/EditUser";
 
 function App() {
   return (
@@ -36,6 +37,11 @@ function App() {
                 <Header/>
                 <Historic/>
               </div>
+            </ProtectedLayout>
+            }/>
+            <Route path='/edit' element={
+            <ProtectedLayout>
+                <EditUser/>
             </ProtectedLayout>
             }/>
             <Route

@@ -17,6 +17,14 @@ export default function Header(){
         }
     }
 
+    async function edit(){
+        try{
+            navigate('/edit')
+        }catch(err){
+            alert('Edit failed')
+        }
+    }
+
     return(
         <header className="container5">
             <h1 className="nome-proj">Contador de Calorias</h1>
@@ -47,6 +55,8 @@ export default function Header(){
 
                 </div>
                     <span style={{position: 'absolute', right: 100, top: 90}}>Welcome, <strong>{userName !== null ? userName.toUpperCase():''}</strong>!</span>
+
+                    <button onClick={edit}>Alterar Cadastro</button>
 
                     <button className="logbutton" style={{position: 'absolute', right: 10, top: 75}} onClick={logout}>Logout</button>
             </section>
