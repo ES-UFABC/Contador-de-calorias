@@ -104,6 +104,23 @@ export default function Home(){
             throw new Error('Falha ao solicitar calculo');
         }
     }
+
+    async function handleSave(){
+        const chosenDate = date.format('YYYY-MM-DD');
+        const dataSend = {
+            myFoods,
+            chosenDate,
+        };
+        console.log(JSON.stringify(dataSend, null, 2))
+        try{
+            //const request = await Api.post('saveMeal',dataSend,authorization);
+            //console.log(request.status)
+            //console.log(request)
+            //setAnswer(request.data);
+        }catch(error){
+            throw new Error('Falha ao salvar refeição');
+        }
+    }
     
     const handleDateChange = (dateObj: moment.Moment|null): void => {
         if(dateObj !== null) setDate(dateObj);
@@ -112,17 +129,17 @@ export default function Home(){
 
     //console.log(allFoods)
     //console.log(myFoods)
-    console.log('answer:')
+    //console.log('answer:')
     //console.log(answer)
-    console.log(JSON.stringify(answer, null, 2))
+    //console.log(JSON.stringify(answer, null, 2))
 
     return(
         <div>
-            <h1>Home</h1>
+            <br/>
+            <p><strong>Data da refeição: </strong></p>
             <DatePicker defaultValue={date} onChange={(e)=>handleDateChange(e)} /><br/><br/>
-            <button onClick={()=>{handleCalculate()}}>Calcular</button>
             <br/>
-            <br/>
+            <p><strong>Escolha de Alimentos</strong></p>
             <Select  
                 onChange={e=>handleInputChange(e)}
                 style={{ width: 250 }}>
@@ -154,7 +171,9 @@ export default function Home(){
                     </li>
                 ))}
             </List>
-            
+            <button onClick={()=>{handleCalculate()}}>Calcular</button>
+            <br/>
+            <br/>
             {(answer !== undefined && answer !== null)?
             <div>
                 <br/>
@@ -171,6 +190,10 @@ export default function Home(){
                 <p>Carboidratos: { answer.Calorias_de_Carboidratos_Ideal_Kcal } (Kcal) / {answer.Quantidade_de_Carboidratos_Ideal_g} g</p>
                 <p>Gorduras: {answer.Calorias_de_Gorduras_Ideal_Kcal} (Kcal) / {answer.Quantidade_de_Gorduras_Ideal_g} g</p>
                 <p>Proteínas: {answer.Calorias_de_Proteinas_Ideal_Kcal} (Kcal) / {answer.Quantidade_de_Proteinas_Ideal_g} g</p>
+                <br/>
+                <button onClick={()=>{handleSave()}}>Salvar</button>
+                <br/>
+                <br/>
             </div>:<></>}
 
         </div>
