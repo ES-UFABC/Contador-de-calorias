@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
 import { Api } from "../../services/api";
-import { Select } from "antd";
+import { Select, DatePicker } from "antd";
 import {FaTrash, FaPlus, FaMinus} from 'react-icons/fa';
 import { List, Button } from "./styles";
+import moment from "moment";
 
 export interface IFood{
     name: string,
@@ -38,6 +39,7 @@ export default function Home(){
     const [myFoods, setMyFoods] = useState<IMyFood[]>([]);
     const [gambiarra,setGambiarra] = useState(1);
     const [answer, setAnswer] = useState<Answer>();
+    const [date, setDate] = useState(moment(new Date()));
 
     const token = localStorage.getItem('token');
 
@@ -102,16 +104,22 @@ export default function Home(){
             throw new Error('Falha ao solicitar calculo');
         }
     }
+    
+    const handleDateChange = (dateObj: moment.Moment|null): void => {
+        if(dateObj !== null) setDate(dateObj);
+    }
+    console.log(date.format('YYYY-MM-DD'))
 
     //console.log(allFoods)
     //console.log(myFoods)
-    //console.log('answer:')
+    console.log('answer:')
     //console.log(answer)
     console.log(JSON.stringify(answer, null, 2))
 
     return(
         <div>
             <h1>Home</h1>
+            <DatePicker defaultValue={date} onChange={(e)=>handleDateChange(e)} /><br/><br/>
             <button onClick={()=>{handleCalculate()}}>Calcular</button>
             <br/>
             <br/>
