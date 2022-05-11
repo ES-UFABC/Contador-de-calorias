@@ -4,7 +4,7 @@ import { FaTrash } from "react-icons/fa";
 import { Answer } from "../Home";
 import { Api } from "../../services/api";
 
-export interface Meal{
+export interface IMeal{
     Refeicao_Numero: number, 
     Peso: number, 
     Proteinas: number, 
@@ -15,7 +15,7 @@ export interface Meal{
 }
 
 export default function Historic(){
-    const [meals,setMeals] = useState<Meal[]>([]);
+    const [meals,setMeals] = useState<IMeal[]>([]);
 
     const token = localStorage.getItem('token');
 
@@ -26,18 +26,20 @@ export default function Historic(){
     }
 
     useEffect(()=>{
-        async function chargeFoods(){
+        async function chargeMeals(){
             const response = await Api.get("getMeals",authorization);
+            console.log(JSON.stringify(response.data, null, 2))
             setMeals(response.data);
         } 
-        
-        chargeFoods();
+        chargeMeals();
         },[]);
+
         console.log(meals)
+        console.log(typeof(meals))
     return(
         <div>
             <List>
-                {meals.map(meal=>(
+                {meals.map(meal=>
                     <li key={meal.Refeicao_Numero}>
                         <span>
                             <Button onClick={()=>{}}>
@@ -46,7 +48,7 @@ export default function Historic(){
                             Refeição de: {meal.Data}
                         </span>
                     </li>
-                ))}
+                )};
             </List>
         </div>
     );
