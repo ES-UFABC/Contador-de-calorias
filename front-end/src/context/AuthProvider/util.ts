@@ -23,7 +23,6 @@ export async function LoginRequest(userName:string,password:string){
         password,
     };
     try{
-        //const request = await Api.post('api/auth/v1/signin',data);
         const request = await Api.post('verifyUsername',data);
         localStorage.setItem('userName',userName);
         localStorage.setItem('token',request.data.token);
@@ -43,9 +42,30 @@ export async function RegisterRequest(userName:string,password:string,age:number
         weight,
         gender
     };
-    console.log(JSON.stringify(data, null, 2))
+    //console.log(JSON.stringify(data, null, 2))
     try{
         const request = await Api.post('register',data);
+
+        return request.data;
+    }catch(error){
+        return null;
+    }
+}
+
+export async function setUserData(userName:string,password:string,age:number,
+    height:number,weight:number,gender:string,token:string|null){
+    const data = {
+        userName,
+        password,
+        age,
+        height,
+        weight,
+        gender,
+        token
+    };
+    console.log(JSON.stringify(data, null, 2))
+    try{
+        const request = await Api.post('setUserData',data);
 
         return request.data;
     }catch(error){

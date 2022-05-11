@@ -1,23 +1,53 @@
 import { Button, Form, Input, Row, message, Col, Select, InputNumber } from "antd"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../context/AuthProvider/useAuth"
-import { RegisterRequest } from "../../context/AuthProvider/util"
 import './styles.css'
 import logo from "../../assets/Logo-2.png";
+import { useState, useEffect } from "react";
+import { Api } from "../../services/api";
+import { setUserData } from "../../context/AuthProvider/util";
+
+export interface User{
+    userName: string,
+    weight: number,
+    height: number,
+    age: number,
+    gender:string,
+    id:number
+}
 
 export const EditUser = () =>{
     const auth = useAuth()
     const navigate = useNavigate();
+    const [user, setUser] = useState<User>();
 
-    const userName = localStorage.getItem('userName');
+    const token = localStorage.getItem('token');
 
+    const authorization = {
+        headers: {
+            Authorization: `${token}`
+        }
+    }
+
+    //const userName = localStorage.getItem('userName');
+
+    useEffect(()=>{
+        async function chargeFoods(){
+            const response = await Api.get("getUserData",authorization);
+            setUser(response.data);
+        } 
+        
+        chargeFoods();
+        },[]);
+        console.log(user)
     const { Option } = Select;
 
     async function onFinish(values:{userName:string,password:string,age:number,
     height:number,weight:number,gender:string}){
+
         try{
-            await RegisterRequest(values.userName,values.password,values.age,//mudar metodo pra EditUserRequest
-                values.height,values.weight,values.gender);
+            await setUserData(values.userName,values.password,values.age,
+                values.height,values.weight,values.gender,token);
 
             await auth.authenticate(values.userName,values.password);
 
@@ -34,6 +64,8 @@ export const EditUser = () =>{
     }
 
     return (
+        <div>
+            {user !== undefined ?
         <Row
         className="container2"
         justify="center"
@@ -60,7 +92,7 @@ export const EditUser = () =>{
                     <Form.Item
                         label='Nome do usuário:'
                         name='userName'
-                        initialValue={userName}
+                        initialValue={user?.userName}
                         rules={[{ required: true }]}
                     >
                         <Input />
@@ -75,6 +107,7 @@ export const EditUser = () =>{
                     <Form.Item
                         label='Idade:'
                         name='age'
+                        initialValue={user?.age}
                         rules={[{ required: true }]}
                     >
                         <InputNumber value={'user.age'}/>
@@ -82,6 +115,7 @@ export const EditUser = () =>{
                     <Form.Item
                         label='Altura:'
                         name='height'
+                        initialValue={user?.height}
                         rules={[{ required: true }]}
                     >
                         <InputNumber value={'user.height'}/>
@@ -89,6 +123,7 @@ export const EditUser = () =>{
                     <Form.Item
                         label='Peso:'
                         name='weight'
+                        initialValue={user?.weight}
                         rules={[{ required: true }]}
                     >
                         <InputNumber value={'user.weight'}/>
@@ -111,5 +146,7 @@ export const EditUser = () =>{
                 </Form>
             </Col>
         </Row>
+        :<></>}
+        </div>
     )
 }
