@@ -29,8 +29,6 @@ export const EditUser = () =>{
         }
     }
 
-    //const userName = localStorage.getItem('userName');
-
     useEffect(()=>{
         async function chargeFoods(){
             const response = await Api.get("getUserData",authorization);
