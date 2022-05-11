@@ -1,0 +1,22 @@
+.style-sobre{
+    background: linear-gradient(rgb(246, 213, 80), transparent);
+}
+
+.titulo{
+    text-align: center;
+}
+
+.descricao{
+    margin-left: 15%;
+    margin-right: 15%;
+    text-align: justify;
+}
+
+.devs{
+    margin-top: 5%;
+    text-align: center;
+}
+
+.devs-nome{
+    text-align: center;
+}

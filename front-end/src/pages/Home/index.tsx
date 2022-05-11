@@ -3,6 +3,7 @@ import { Api } from "../../services/api";
 import { Select } from "antd";
 import {FaTrash, FaPlus, FaMinus} from 'react-icons/fa';
 import { List, Button } from "./styles";
+import "./styles-home.css";
 
 export interface IFood{
     name: string,
@@ -110,12 +111,12 @@ export default function Home(){
     console.log(JSON.stringify(answer, null, 2))
 
     return(
-        <div>
+        <div className="style-home">
             <h1>Home</h1>
             <button onClick={()=>{handleCalculate()}}>Calcular</button>
             <br/>
             <br/>
-            <Select  
+            <Select
                 onChange={e=>handleInputChange(e)}
                 style={{ width: 250 }}>
             
@@ -127,7 +128,7 @@ export default function Home(){
                 </Select.Option>
                 )};
             </Select>
-            <List>
+            <List className="box1">
                 {myFoods.map(food=>(
                     <li key={food.name}>
                         <span>
@@ -148,21 +149,26 @@ export default function Home(){
             </List>
             
             {(answer !== undefined && answer !== null)?
-            <div>
+            <div className="box2">
                 <br/>
-                <p><strong>IMC: </strong>{answer.imc}</p>
+                <div className="box3">
+                    <p><strong>IMC: </strong>{answer.imc}</p>
+                    <p><strong>Taxa metabólica basal (Kcal):</strong> {answer.Taxa_metabolica_Basal_Kcal}</p>
+                </div>
                 <br/>
-                <p><strong>Taxa metabólica basal (Kcal):</strong> {answer.Taxa_metabolica_Basal_Kcal}</p>
+                <div className="box3">
+                    <p><strong>Valores Consumidos </strong></p>
+                    <p>Carboidratos: {answer.Variação_de_Carboidratos_Kcal} (Kcal) / {answer.Variação_de_Carboidratos_g} g</p>
+                    <p>Gorduras: {answer.Variação_de_Gorduras_Kcal} (Kcal) / {answer.Variação_de_Gorduras_g} g</p>
+                    <p>Proteínas: {answer.Variação_de_Proteinas_Kcal} (Kcal) / {answer.Variação_de_Proteinas_g} g</p>
+                </div>
                 <br/>
-                <p><strong>Valores Consumidos </strong></p>
-                <p>Carboidratos: {answer.Variação_de_Carboidratos_Kcal} (Kcal) / {answer.Variação_de_Carboidratos_g} g</p>
-                <p>Gorduras: {answer.Variação_de_Gorduras_Kcal} (Kcal) / {answer.Variação_de_Gorduras_g} g</p>
-                <p>Proteínas: {answer.Variação_de_Proteinas_Kcal} (Kcal) / {answer.Variação_de_Proteinas_g} g</p>
-                <br/>
-                <p><strong>Valores Ideais de Consumo</strong></p>
-                <p>Carboidratos: { answer.Calorias_de_Carboidratos_Ideal_Kcal } (Kcal) / {answer.Quantidade_de_Carboidratos_Ideal_g} g</p>
-                <p>Gorduras: {answer.Calorias_de_Gorduras_Ideal_Kcal} (Kcal) / {answer.Quantidade_de_Gorduras_Ideal_g} g</p>
-                <p>Proteínas: {answer.Calorias_de_Proteinas_Ideal_Kcal} (Kcal) / {answer.Quantidade_de_Proteinas_Ideal_g} g</p>
+                <div className="box3">
+                    <p><strong>Valores Ideais de Consumo</strong></p>
+                    <p>Carboidratos: { answer.Calorias_de_Carboidratos_Ideal_Kcal } (Kcal) / {answer.Quantidade_de_Carboidratos_Ideal_g} g</p>
+                    <p>Gorduras: {answer.Calorias_de_Gorduras_Ideal_Kcal} (Kcal) / {answer.Quantidade_de_Gorduras_Ideal_g} g</p>
+                    <p>Proteínas: {answer.Calorias_de_Proteinas_Ideal_Kcal} (Kcal) / {answer.Quantidade_de_Proteinas_Ideal_g} g</p>
+                </div>
             </div>:<></>}
 
         </div>

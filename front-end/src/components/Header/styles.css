@@ -37,3 +37,12 @@
 .logbutton{
     font-size: 0.7em;
 }
+
+.style-link{
+    color: black;
+    font-style: italic;
+}
+
+.welcome{
+    text-decoration: underline;
+}

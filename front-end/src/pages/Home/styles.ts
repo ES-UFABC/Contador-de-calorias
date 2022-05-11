@@ -12,7 +12,7 @@ export const List = styled.ul`
         justify-content: space-between;
 
         & + li{
-            border-top: 1px solid #EEE;
+            border-top: 2px solid #EEE;
         }
 
         a{

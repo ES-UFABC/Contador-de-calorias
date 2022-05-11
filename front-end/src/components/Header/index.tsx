@@ -2,6 +2,7 @@ import "./styles.css";
 import logo from "../../assets/Logo-2.png";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { FaBlackberry } from "react-icons/fa";
 
 export default function Header(){
     const userName = localStorage.getItem('userName');
@@ -36,29 +37,31 @@ export default function Header(){
                     </div>
 
                     <div className="topicos">
-                        <Link to="/home">
+                        <Link to="/home" className="style-link">
                             <p>Home</p>   
                         </Link>               
                     </div>
 
                     <div className="topicos">
-                        <Link to="/about">
-                            <p>Sobre</p> 
-                        </Link>                 
-                    </div>
-
-                    <div className="topicos">
-                        <Link to="/historic">
+                        <Link to="/historic" className="style-link">
                             <p>Historico</p>     
                         </Link>             
                     </div>
 
+                    <div className="topicos">
+                        <Link to="/about" className="style-link">
+                            <p>Sobre</p> 
+                        </Link>                 
+                    </div>
+
+
+
                 </div>
-                    <span style={{position: 'absolute', right: 100, top: 90}}>Welcome, <strong>{userName !== null ? userName.toUpperCase():''}</strong>!</span>
+                    <span className="welcome" style={{position: 'absolute', top: 90, right: 100}}>Welcome, <strong>{userName !== null ? userName.toUpperCase():''}</strong>!</span>
 
-                    <button onClick={edit}>Alterar Cadastro</button>
+                    <button className="logbutton" style={{position: 'absolute', right: 10, top: 50}} onClick={edit}>Alterar Cadastro</button>
 
-                    <button className="logbutton" style={{position: 'absolute', right: 10, top: 75}} onClick={logout}>Logout</button>
+                    <button className="logbutton" style={{position: 'absolute', right: 10, top: 20}} onClick={logout}>Logout</button>
             </section>
 
         </header>
