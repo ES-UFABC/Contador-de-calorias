@@ -110,10 +110,11 @@ export default function Home(){
         const dataSend = {
             myFoods,
             chosenDate,
+            //answer,
         };
         console.log(JSON.stringify(dataSend, null, 2))
         try{
-            //const request = await Api.post('saveMeal',dataSend,authorization);
+            const request = await Api.post('saveMeal',dataSend,authorization);
             //console.log(request.status)
             //console.log(request)
             //setAnswer(request.data);
