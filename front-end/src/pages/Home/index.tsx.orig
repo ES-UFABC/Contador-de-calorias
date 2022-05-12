@@ -3,8 +3,11 @@ import { Api } from "../../services/api";
 import { Select, DatePicker } from "antd";
 import {FaTrash, FaPlus, FaMinus} from 'react-icons/fa';
 import { List, Button } from "./styles";
+<<<<<<< HEAD
 import "./styles-home.css";
+=======
 import moment from "moment";
+>>>>>>> historic
 
 export interface IFood{
     name: string,
@@ -136,16 +139,23 @@ export default function Home(){
     //console.log(JSON.stringify(answer, null, 2))
 
     return(
+<<<<<<< HEAD
         <div className="style-home">
+            <h1>Home</h1>
             <button onClick={()=>{handleCalculate()}}>Calcular</button>
+=======
         <div>
+>>>>>>> historic
             <br/>
             <p><strong>Data da refeição: </strong></p>
             <DatePicker defaultValue={date} onChange={(e)=>handleDateChange(e)} /><br/><br/>
             <br/>
+<<<<<<< HEAD
             <Select
+=======
             <p><strong>Escolha de Alimentos</strong></p>
             <Select  
+>>>>>>> historic
                 onChange={e=>handleInputChange(e)}
                 style={{ width: 250 }}>
             
