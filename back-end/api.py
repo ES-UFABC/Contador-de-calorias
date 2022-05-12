@@ -113,7 +113,91 @@ def registerUser():
 @cross_origin()
 def registerFood(): 
   from backend.macro_calculus import get_avg_macros
-  from datetime import datetime
+  
+  users_df = pd.read_csv('users.csv', delimiter=';')
+  demo_df = pd.read_csv('demographics.csv', delimiter=';')
+  token = request.headers['Authorization']
+  users_id = users_df[users_df['token']==int(token)]['id'].values[0]
+  
+  del users_df
+
+  foods = request.json['myFoods']
+  
+  qtd_1 = []
+  cal_val = []
+  carbo_val = []
+  lip_val = []
+  prot_val = []
+  carbo_cals = []
+  lip_cals = []
+  prot_cals = [] 
+  today = []
+  logs = []
+  
+  
+  for i in range(len(foods)):
+
+    qtd =  int(foods[i]['quantidade'])   
+    qtd_1.append(int(foods[i]['quantidade']))
+    cal_val.append(float(foods[i]['cal_val'])*qtd)
+    carbo_val.append(float(foods[i]['carbo_val'])*qtd)
+    lip_val.append(float(foods[i]['lip_val'])*qtd)
+    prot_val.append(float(foods[i]['prot_val'])*qtd)
+    carbo_cals.append(float(foods[i]['carbo_val'])*4*qtd)
+    lip_cals.append(float(foods[i]['lip_val'])*9*qtd)
+    prot_cals.append(float(foods[i]['prot_val'])*4*qtd)
+   # today.append(request.json['chosenDate'])
+
+  df_temp = pd.DataFrame()
+
+  df_temp['log_id'] = logs
+  df_temp['id'] = [users_id]*len(foods)
+  df_temp['weight'] = [demo_df[demo_df['id'] == users_id]['weight'].values[0]]*len(foods)
+  df_temp['qtd'] =  qtd_1
+  df_temp['protein'] = prot_val
+  df_temp['carbohydrate'] = carbo_val
+  df_temp['fat'] = lip_val
+  df_temp['calories'] = cal_val
+ # df_temp['created_at'] = today
+  
+  weight = demo_df[demo_df['id'] == users_id]['weight'].values[0]
+  height = demo_df[demo_df['id'] == users_id]['height'].values[0]
+  age = demo_df[demo_df['id'] == users_id]['age'].values[0]
+  gender = demo_df[demo_df['id'] == users_id]['gender'].values[0]
+
+  avg_macro = get_avg_macros(weight, height, age, gender)
+
+  macros = {}
+  macros['imc'] = avg_macro.imc
+  macros['Taxa_metabolica_Basal_Kcal'] = avg_macro.tmb
+  macros['Calorias_de_Carboidratos_Ideal_Kcal'] = avg_macro.carbo_cals
+  macros['Quantidade_de_Carboidratos_Ideal_g'] = avg_macro.carbo_g
+  macros['Calorias_de_Proteinas_Ideal_Kcal'] = avg_macro.prot_cals
+  macros['Quantidade_de_Proteinas_Ideal_g'] = avg_macro.prot_g
+  macros['Calorias_de_Gorduras_Ideal_Kcal'] = avg_macro.fat_cals
+  macros['Quantidade_de_Gorduras_Ideal_g'] = avg_macro.fat_g
+
+  macros['Variação_de_Carboidratos_Kcal'] = int(avg_macro.carbo_cals) - int(sum(carbo_cals))
+  macros['Variação_de_Carboidratos_g'] = int(avg_macro.carbo_g) - int(sum(carbo_val))
+  macros['Variação_de_Proteinas_Kcal'] = int(avg_macro.prot_cals) - int(sum(prot_cals))
+  macros['Variação_de_Proteinas_g'] = int(avg_macro.prot_g)  - sum(prot_val)
+  macros['Variação_de_Gorduras_Kcal'] = int(avg_macro.fat_cals) - sum(lip_cals)
+  macros['Variação_de_Gorduras_g'] = int(avg_macro.fat_g) - sum(lip_val)
+     
+  response = app.response_class(
+      response=json.dumps(macros),
+      #response=jsonify(resp),
+      status=200,
+      mimetype='application/json'
+    )
+    
+  return response
+
+
+@app.route('/saveMeal', methods=['POST'])
+@cross_origin()
+def saveMeal(): 
+  from backend.macro_calculus import get_avg_macros
   
   users_df = pd.read_csv('users.csv', delimiter=';')
   logs_df = pd.read_csv('log.csv', delimiter=';')
@@ -148,7 +232,7 @@ def registerFood():
     carbo_cals.append(float(foods[i]['carbo_val'])*4*qtd)
     lip_cals.append(float(foods[i]['lip_val'])*9*qtd)
     prot_cals.append(float(foods[i]['prot_val'])*4*qtd)
-    today.append(datetime.today())
+    today.append(request.json['chosenDate'])
     z = int(logs_df['log_id'].max())+1+i
     logs.append(z)
 
@@ -184,20 +268,20 @@ def registerFood():
 
   macros = {}
   macros['imc'] = avg_macro.imc
-  macros['Taxa metabolica Basal (Kcal)'] = avg_macro.tmb
-  macros['Calorias de Carboidratos Ideal (Kcal)'] = avg_macro.carbo_cals
-  macros['Quantidade de Carboidratos Ideal (g)'] = avg_macro.carbo_g
-  macros['Calorias de Proteinas Ideal (Kcal)'] = avg_macro.prot_cals
-  macros['Quantidade de Proteinas Ideal (g)'] = avg_macro.prot_g
-  macros['Calorias de Gorduras Ideal (Kcal)'] = avg_macro.fat_cals
-  macros['Quantidade de Gorduras Ideal (g)'] = avg_macro.fat_g
+  macros['Taxa_metabolica_Basal_Kcal'] = avg_macro.tmb
+  macros['Calorias_de_Carboidratos_Ideal_Kcal'] = avg_macro.carbo_cals
+  macros['Quantidade_de_Carboidratos_Ideal_g'] = avg_macro.carbo_g
+  macros['Calorias_de_Proteinas_Ideal_Kcal'] = avg_macro.prot_cals
+  macros['Quantidade_de_Proteinas_Ideal_g'] = avg_macro.prot_g
+  macros['Calorias_de_Gorduras_Ideal_Kcal'] = avg_macro.fat_cals
+  macros['Quantidade_de_Gorduras_Ideal_g'] = avg_macro.fat_g
 
-  macros['Variação de Carboidratos (Kcal)'] = int(avg_macro.carbo_cals) - int(sum(carbo_cals))
-  macros['Variação de Carboidratos (g)'] = int(avg_macro.carbo_g) - int(sum(carbo_val))
-  macros['Variação de Proteinas (Kcal)'] = int(avg_macro.prot_cals) - int(sum(prot_cals))
-  macros['Variação de Proteinas (g)'] = int(avg_macro.prot_g)  - sum(prot_val)
-  macros['Variação de Gorduras (Kcal)'] = int(avg_macro.fat_cals) - sum(lip_cals)
-  macros['Variação de Gorduras (g)'] = int(avg_macro.fat_g) - sum(lip_val)
+  macros['Variação_de_Carboidratos_Kcal'] = int(avg_macro.carbo_cals) - int(sum(carbo_cals))
+  macros['Variação_de_Carboidratos_g'] = int(avg_macro.carbo_g) - int(sum(carbo_val))
+  macros['Variação_de_Proteinas_Kcal'] = int(avg_macro.prot_cals) - int(sum(prot_cals))
+  macros['Variação_de_Proteinas_g'] = int(avg_macro.prot_g)  - sum(prot_val)
+  macros['Variação_de_Gorduras_Kcal'] = int(avg_macro.fat_cals) - sum(lip_cals)
+  macros['Variação_de_Gorduras_g'] = int(avg_macro.fat_g) - sum(lip_val)
      
   response = app.response_class(
       response=json.dumps(macros),
@@ -207,7 +291,6 @@ def registerFood():
     )
     
   return response
-
 
 @app.route('/dropMeal', methods=['POST'])
 @cross_origin()
@@ -373,5 +456,85 @@ def calculate():
     )
     
   return response
+
+@app.route('/getMeals', methods=['GET'])
+@cross_origin()
+def getMeals():
+  users_df = pd.read_csv('users.csv', delimiter=';')
+  logs_df = pd.read_csv('log.csv', delimiter=';')
+  auth = request.headers['Authorization']
+  user_token = users_df[(users_df['token']==int(auth))]
+
+  id = users_df[(users_df['token']==int(auth))]['id'].values[0]
+
+  logs_df = logs_df[logs_df['id'] == id]
+  
+  temp = logs_df.groupby(['meal_id'])[['weight','protein','carbohydrate','fat','calories','created_at']].agg({'weight':'mean','protein':'sum','carbohydrate':'sum','fat':'sum','calories':'sum','created_at':'max'}).reset_index()
+
+  temp['meal_id'] = [i for i in range(1, temp.shape[0]+1)]
+
+  temp.rename(columns = {'meal_id':'Refeicao_Numero','weight':'Peso', 'protein': 'Proteinas', 'carbohydrate': 'Carboidratos','fat':'Gorduras','calories':'Calorias','created_at':'Data'}, inplace = True)
+
+  temp_dict = temp.to_dict(orient='records')
+  #'index', 
+    
+  response = app.response_class(
+      response=json.dumps(temp_dict),
+      #response=jsonify(resp),
+      status=200,
+      mimetype='application/json'
+    )  
+
+  return response
+
+@app.route('/getUserData', methods=['GET'])
+@cross_origin()
+def getUserData():
+  auth = request.headers['Authorization']
+  user_df = pd.read_csv('users.csv', delimiter=';')
+  data_df = pd.read_csv('demographics.csv', delimiter=';')
+  user_df = user_df[user_df['token']==int(auth)]
+  if user_df.shape[0]==0:
+    return Response(status=401)
+  else:
+    data_df = data_df[data_df['id']==user_df['id'].iloc[0]]
+    data_df['userName'] = user_df['username'].iloc[0]
+    resp = data_df.to_dict(orient='records')
+    response = app.response_class(
+      response=json.dumps(resp[0]),
+      status=200,
+      mimetype='application/json'
+    )
+    return response
+
+@app.route('/setUserData', methods=['POST'])
+@cross_origin()
+def setUserData(): 
+  token = request.json['token']
+  username = request.json['userName']
+  password = request.json['password']
+  age =  request.json['age']
+  gender = str(request.json['gender'][0]).upper()
+  height = request.json['height']
+  weight = request.json['weight']
+  users_df = pd.read_csv('users.csv', delimiter=';')
+  data_df = pd.read_csv('demographics.csv', delimiter=';')
+  usersCheck_df = users_df[users_df['token']==int(token)]
+  if usersCheck_df.shape[0]==0:
+    return Response(status=401)
+  else:
+    users_df.loc[users_df['id']==usersCheck_df['id'].iloc[0], ['username']] = username
+    users_df.loc[users_df['id']==usersCheck_df['id'].iloc[0], ['password']] = password
+    data_df.loc[data_df['id']==usersCheck_df['id'].iloc[0], ['age']] = age
+    data_df.loc[data_df['id']==usersCheck_df['id'].iloc[0], ['gender']] = gender
+    data_df.loc[data_df['id']==usersCheck_df['id'].iloc[0], ['height']] = height
+    data_df.loc[data_df['id']==usersCheck_df['id'].iloc[0], ['weight']] = weight
+    users_df.to_csv('users.csv', sep=";", index = False)
+    data_df.to_csv('demographics.csv', sep=";", index = False)
+    response = app.response_class(
+      status=200,
+      mimetype='application/json'
+    )
+    return response
 
 app.run(host='0.0.0.0')
