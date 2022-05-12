@@ -77,7 +77,7 @@ export const Register = () =>{
                         <InputNumber />
                     </Form.Item>
                     <Form.Item
-                        label='Digite sua altura:'
+                        label='Digite sua altura (cm):'
                         name='height'
                         rules={[{ required: true }]}
                     >

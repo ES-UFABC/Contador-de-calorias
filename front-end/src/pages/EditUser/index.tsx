@@ -111,7 +111,7 @@ export const EditUser = () =>{
                         <InputNumber value={'user.age'}/>
                     </Form.Item>
                     <Form.Item
-                        label='Altura:'
+                        label='Altura (cm):'
                         name='height'
                         initialValue={user?.height}
                         rules={[{ required: true }]}
