@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { List, Button } from "antd";
+import { List, Button, Modal } from "antd";
 import { FaTrash } from "react-icons/fa";
-import { Answer } from "../Home";
 import { Api } from "../../services/api";
 
 export interface IMeal{
@@ -16,6 +15,8 @@ export interface IMeal{
 
 export default function Historic(){
     const [meals,setMeals] = useState<IMeal[]>([]);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [meal, setMeal] = useState<IMeal>();
 
     const token = localStorage.getItem('token');
 
@@ -24,6 +25,15 @@ export default function Historic(){
             Authorization: `${token}`
         }
     }
+
+    const showModal = (meal:IMeal) => {
+        setMeal(meal);
+        setIsModalVisible(true);
+      };
+    
+      const handleOk = () => {
+        setIsModalVisible(false);
+      };
 
     useEffect(()=>{
         async function chargeMeals(){
@@ -41,7 +51,7 @@ export default function Historic(){
             <List>
                 {meals.map(meal=>
                     <li key={meal.Refeicao_Numero}>
-                        <span>
+                        <span onClick={()=>{showModal(meal)}}>
                             <Button onClick={()=>{}}>
                                 <FaTrash size={14} />
                             </Button>
@@ -50,6 +60,13 @@ export default function Historic(){
                     </li>
                 )};
             </List>
+            <Modal title={'Refeição de:'+ meal?.Data} visible={isModalVisible} onOk={handleOk} onCancel={handleOk}>
+                <p>Peso: {meal?.Peso} </p>
+                <p>Proteinas: {meal?.Proteinas} </p>
+                <p>Carboidratos: {meal?.Carboidratos}</p> 
+                <p>Gorduras: {meal?.Gorduras}</p> 
+                <p>Calorias: {meal?.Calorias}</p> 
+            </Modal>
         </div>
     );
 }
