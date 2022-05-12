@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../context/AuthProvider/useAuth"
 import './styles.css'
 import logo from "../../assets/Logo-2.png";
-import FormItem from "antd/lib/form/FormItem";
 
 export const Login = () =>{
     const auth = useAuth()

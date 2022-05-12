@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Api } from "../../services/api";
-import { Select, DatePicker } from "antd";
+import { Select, DatePicker, message } from "antd";
 import {FaTrash, FaPlus, FaMinus} from 'react-icons/fa';
 import { List, Button } from "./styles";
 import "./styles-home.css";
@@ -54,6 +54,10 @@ export default function Home(){
         const food = allFoods.find(r => r.name === e);
         if(!food){
             throw new Error('Falha ao carregar');
+        }
+        if(myFoods.find(r => r.name === e)){
+            message.error('Food already selected');
+            return;
         }
         const data: IMyFood = {
             name: food.name,
