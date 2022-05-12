@@ -108,7 +108,7 @@ export const EditUser = () =>{
                         initialValue={user?.age}
                         rules={[{ required: true }]}
                     >
-                        <InputNumber value={'user.age'}/>
+                        <InputNumber value={user.age}  min={0} max={150} />
                     </Form.Item>
                     <Form.Item
                         label='Altura (cm):'
@@ -116,7 +116,7 @@ export const EditUser = () =>{
                         initialValue={user?.height}
                         rules={[{ required: true }]}
                     >
-                        <InputNumber value={'user.height'}/>
+                        <InputNumber value={user.height}  min={1} max={300} />
                     </Form.Item>
                     <Form.Item
                         label='Peso:'
@@ -124,7 +124,7 @@ export const EditUser = () =>{
                         initialValue={user?.weight}
                         rules={[{ required: true }]}
                     >
-                        <InputNumber value={'user.weight'}/>
+                        <InputNumber value={user.weight}  min={1} max={400} />
                     </Form.Item>
                     <Form.Item name="gender" label="Gênero" rules={[{ required: true }]}>
                         <Select

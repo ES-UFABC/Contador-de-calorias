@@ -74,21 +74,22 @@ export const Register = () =>{
                         name='age'
                         rules={[{ required: true }]}
                     >
-                        <InputNumber />
+                        <InputNumber min={0} max={150} />
                     </Form.Item>
                     <Form.Item
                         label='Digite sua altura (cm):'
                         name='height'
                         rules={[{ required: true }]}
                     >
-                        <InputNumber />
+                        <InputNumber min={1} max={300} //step="0.01"
+                         />
                     </Form.Item>
                     <Form.Item
                         label='Digite seu peso:'
                         name='weight'
                         rules={[{ required: true }]}
                     >
-                        <InputNumber />
+                        <InputNumber min={1} max={400} />
                     </Form.Item>
                     <Form.Item name="gender" label="Gênero" rules={[{ required: true }]}>
                         <Select
