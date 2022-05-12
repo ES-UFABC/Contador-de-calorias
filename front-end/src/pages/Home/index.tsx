@@ -138,12 +138,10 @@ export default function Home(){
     return(
         <div className="style-home">
             <button onClick={()=>{handleCalculate()}}>Calcular</button>
-        <div>
             <br/>
             <p><strong>Data da refeição: </strong></p>
             <DatePicker defaultValue={date} onChange={(e)=>handleDateChange(e)} /><br/><br/>
             <br/>
-            <Select
             <p><strong>Escolha de Alimentos</strong></p>
             <Select  
                 onChange={e=>handleInputChange(e)}
@@ -194,14 +192,12 @@ export default function Home(){
                     <p>Proteínas: {answer.Variação_de_Proteinas_Kcal} (Kcal) / {answer.Variação_de_Proteinas_g} g</p>
                 </div>
                 <br/>
-<<<<<<< HEAD
                 <div className="box3">
                     <p><strong>Valores Ideais de Consumo</strong></p>
                     <p>Carboidratos: { answer.Calorias_de_Carboidratos_Ideal_Kcal } (Kcal) / {answer.Quantidade_de_Carboidratos_Ideal_g} g</p>
                     <p>Gorduras: {answer.Calorias_de_Gorduras_Ideal_Kcal} (Kcal) / {answer.Quantidade_de_Gorduras_Ideal_g} g</p>
                     <p>Proteínas: {answer.Calorias_de_Proteinas_Ideal_Kcal} (Kcal) / {answer.Quantidade_de_Proteinas_Ideal_g} g</p>
                 </div>
-=======
                 <p><strong>Valores Consumidos </strong></p>
                 <p>Carboidratos: {answer.Variação_de_Carboidratos_Kcal} (Kcal) / {answer.Variação_de_Carboidratos_g} g</p>
                 <p>Gorduras: {answer.Variação_de_Gorduras_Kcal} (Kcal) / {answer.Variação_de_Gorduras_g} g</p>
@@ -215,7 +211,6 @@ export default function Home(){
                 <button onClick={()=>{handleSave()}}>Salvar</button>
                 <br/>
                 <br/>
->>>>>>> historic
             </div>:<></>}
 
         </div>
