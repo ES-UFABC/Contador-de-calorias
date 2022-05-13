@@ -141,7 +141,7 @@ export default function Home(){
 
     return(
         <div className="style-home">
-            <button onClick={()=>{handleCalculate()}}>Calcular</button>
+            <button className="calc" onClick={()=>{handleCalculate()}}>Calcular</button>
             <br/>
             <p><strong>Data da refeição: </strong></p>
             <DatePicker defaultValue={date} onChange={(e)=>handleDateChange(e)} /><br/><br/>

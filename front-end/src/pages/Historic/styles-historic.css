@@ -1,0 +1,15 @@
+.style-back{
+    background: linear-gradient(rgb(246, 213, 80), transparent);
+    text-align: center;
+}
+
+.trash{
+    background-color: transparent;
+    margin-right: 10px;
+    margin-top: 5px;
+    border-color: black;
+}
+
+.list{
+    margin-top: 5px;
+}

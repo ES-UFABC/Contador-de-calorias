@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { List, Button, Modal } from "antd";
 import { FaTrash } from "react-icons/fa";
 import { Api } from "../../services/api";
+import "./styles-historic.css";
 
 export interface IMeal{
     Refeicao_Numero: number, 
@@ -47,12 +48,12 @@ export default function Historic(){
         console.log(meals)
         console.log(typeof(meals))
     return(
-        <div>
+        <div className="style-back">
             <List>
                 {meals.map(meal=>
                     <li key={meal.Refeicao_Numero}>
                         <span onClick={()=>{showModal(meal)}}>
-                            <Button onClick={()=>{}}>
+                            <Button className="trash" onClick={()=>{}}>
                                 <FaTrash size={14} />
                             </Button>
                             Refeição de: {meal.Data}
@@ -61,7 +62,7 @@ export default function Historic(){
                 )};
             </List>
             <Modal title={'Refeição de:'+ meal?.Data} visible={isModalVisible} onOk={handleOk} onCancel={handleOk}>
-                <p>Peso: {meal?.Peso} </p>
+                <p>Peso Usuário: {meal?.Peso} kg</p>
                 <p>Proteinas: {meal?.Proteinas} </p>
                 <p>Carboidratos: {meal?.Carboidratos}</p> 
                 <p>Gorduras: {meal?.Gorduras}</p> 
