@@ -14,7 +14,7 @@ export const Login = () =>{
 
             navigate('/home')
         }catch(error){
-            message.error('Invalid UserName or password')
+            message.error('Unable to login')
         }
     }
 

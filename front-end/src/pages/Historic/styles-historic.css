@@ -8,6 +8,11 @@
     margin-right: 10px;
     margin-top: 5px;
     border-color: black;
+    cursor: pointer;
+}
+
+.mealList{
+    cursor: pointer;
 }
 
 .list{

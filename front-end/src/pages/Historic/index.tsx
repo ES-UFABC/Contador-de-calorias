@@ -61,10 +61,11 @@ export default function Historic(){
             <List>
                 {meals.map(meal=>
                     <li key={meal.Refeicao_Numero}>
-                        <span onClick={()=>{showModal(meal)}}>
-                            <Button className="trash" onClick={()=>handleDelete(meal.Refeicao_Numero)}>
-                                <FaTrash size={14} />
-                            </Button>
+                        <Button className="trash" onClick={()=>handleDelete(meal.Refeicao_Numero)}>
+                            <FaTrash size={14} />
+                        </Button>
+                        <span className="mealList" onClick={()=>{showModal(meal)}}>
+                            
                             Refeição de: {meal.Data}
                         </span>
                     </li>
