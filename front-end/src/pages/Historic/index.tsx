@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { List, Button, Modal } from "antd";
+import { List, Button, Modal, message } from "antd";
 import { FaTrash } from "react-icons/fa";
 import { Api } from "../../services/api";
 import "./styles-historic.css";
@@ -36,6 +36,15 @@ export default function Historic(){
         setIsModalVisible(false);
       };
 
+      async function handleDelete(id:number){
+                try{
+                    await Api.get(`dropMeal/${id}`,authorization);
+                    window.location.reload(); 
+                }catch(error){
+                    message.error('Failed to delete the meal')
+                }
+            }
+
     useEffect(()=>{
         async function chargeMeals(){
             const response = await Api.get("getMeals",authorization);
@@ -53,7 +62,7 @@ export default function Historic(){
                 {meals.map(meal=>
                     <li key={meal.Refeicao_Numero}>
                         <span onClick={()=>{showModal(meal)}}>
-                            <Button className="trash" onClick={()=>{}}>
+                            <Button className="trash" onClick={()=>handleDelete(meal.Refeicao_Numero)}>
                                 <FaTrash size={14} />
                             </Button>
                             Refeição de: {meal.Data}
