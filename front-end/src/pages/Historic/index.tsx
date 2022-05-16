@@ -37,8 +37,14 @@ export default function Historic(){
       };
 
       async function handleDelete(id:number){
+          const data = {
+              id,
+          }
                 try{
-                    await Api.get(`dropMeal/${id}`,authorization);
+                    console.log('data:')
+                    //console.log(data)
+                    //console.log(JSON.stringify(data, null, 2))
+                    await Api.post('dropMeal',data,authorization);
                     window.location.reload(); 
                 }catch(error){
                     message.error('Failed to delete the meal')
@@ -48,7 +54,7 @@ export default function Historic(){
     useEffect(()=>{
         async function chargeMeals(){
             const response = await Api.get("getMeals",authorization);
-            console.log(JSON.stringify(response.data, null, 2))
+            //console.log(JSON.stringify(response.data, null, 2))
             setMeals(response.data);
         } 
         chargeMeals();
@@ -71,11 +77,11 @@ export default function Historic(){
                     </li>
                 )};
             </List>
-            <Modal title={'Refeição de:'+ meal?.Data} visible={isModalVisible} onOk={handleOk} onCancel={handleOk}>
+            <Modal title={'Refeição de: '+ meal?.Data} visible={isModalVisible} onOk={handleOk} onCancel={handleOk}>
                 <p>Peso Usuário: {meal?.Peso} kg</p>
-                <p>Proteinas: {meal?.Proteinas} </p>
-                <p>Carboidratos: {meal?.Carboidratos}</p> 
-                <p>Gorduras: {meal?.Gorduras}</p> 
+                <p>Proteinas: {meal?.Proteinas} g</p>
+                <p>Carboidratos: {meal?.Carboidratos} g</p> 
+                <p>Gorduras: {meal?.Gorduras} g</p> 
                 <p>Calorias: {meal?.Calorias}</p> 
             </Modal>
         </div>

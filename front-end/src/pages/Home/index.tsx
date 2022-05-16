@@ -123,6 +123,7 @@ export default function Home(){
             //console.log(request.status)
             //console.log(request)
             //setAnswer(request.data);
+            message.info('Saved')
         }catch(error){
             throw new Error('Falha ao salvar refeição');
         }
