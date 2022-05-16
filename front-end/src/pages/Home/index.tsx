@@ -103,7 +103,7 @@ export default function Home(){
         try{
             const request = await Api.post('registerFood',data,authorization);
             //console.log(myFoods)
-            //console.log(request)
+            console.log(JSON.stringify(request, null, 2))
             setAnswer(request.data);
         }catch(error){
             throw new Error('Falha ao solicitar calculo');
@@ -185,22 +185,22 @@ export default function Home(){
             <div className="box2">
                 <br/>
                 <div className="box3">
-                    <p><strong>IMC: </strong>{answer.imc}</p>
-                    <p><strong>Taxa metabólica basal (Kcal):</strong> {answer.Taxa_metabolica_Basal_Kcal}</p>
+                    <p><strong>IMC: </strong>{(answer.imc).toFixed(2)}</p>
+                    <p><strong>Taxa metabólica basal (Kcal):</strong> {(answer.Taxa_metabolica_Basal_Kcal).toFixed(2)}</p>
                 </div>
                 <br/>
                 <div className="box3">
                     <p><strong>Valores Consumidos </strong></p>
-                    <p>Carboidratos: {answer.Variação_de_Carboidratos_Kcal} (Kcal) / {answer.Variação_de_Carboidratos_g} g</p>
-                    <p>Gorduras: {answer.Variação_de_Gorduras_Kcal} (Kcal) / {answer.Variação_de_Gorduras_g} g</p>
-                    <p>Proteínas: {answer.Variação_de_Proteinas_Kcal} (Kcal) / {answer.Variação_de_Proteinas_g} g</p>
+                    <p>Carboidratos: {(answer.Calorias_de_Carboidratos_Ideal_Kcal - answer.Variação_de_Carboidratos_Kcal).toFixed(2)} (Kcal) | {(answer.Quantidade_de_Carboidratos_Ideal_g - answer.Variação_de_Carboidratos_g).toFixed(2)} g</p>
+                    <p>Gorduras: {(answer.Calorias_de_Gorduras_Ideal_Kcal - answer.Variação_de_Gorduras_Kcal).toFixed(2)} (Kcal) | {(answer.Quantidade_de_Gorduras_Ideal_g - answer.Variação_de_Gorduras_g).toFixed(2)} g</p>
+                    <p>Proteínas: {(answer.Calorias_de_Proteinas_Ideal_Kcal - answer.Variação_de_Proteinas_Kcal).toFixed(2)} (Kcal) | {(answer.Quantidade_de_Proteinas_Ideal_g - answer.Variação_de_Proteinas_g).toFixed(2)} g</p>
                 </div>
                 <br/>
                 <div className="box3">
                     <p><strong>Valores Ideais de Consumo</strong></p>
-                    <p>Carboidratos: { answer.Calorias_de_Carboidratos_Ideal_Kcal } (Kcal) / {answer.Quantidade_de_Carboidratos_Ideal_g} g</p>
-                    <p>Gorduras: {answer.Calorias_de_Gorduras_Ideal_Kcal} (Kcal) / {answer.Quantidade_de_Gorduras_Ideal_g} g</p>
-                    <p>Proteínas: {answer.Calorias_de_Proteinas_Ideal_Kcal} (Kcal) / {answer.Quantidade_de_Proteinas_Ideal_g} g</p>
+                    <p>Carboidratos: { answer.Calorias_de_Carboidratos_Ideal_Kcal } (Kcal) | {answer.Quantidade_de_Carboidratos_Ideal_g} g</p>
+                    <p>Gorduras: {answer.Calorias_de_Gorduras_Ideal_Kcal} (Kcal) | {answer.Quantidade_de_Gorduras_Ideal_g} g</p>
+                    <p>Proteínas: {answer.Calorias_de_Proteinas_Ideal_Kcal} (Kcal) | {answer.Quantidade_de_Proteinas_Ideal_g} g</p>
                 </div>
                 <br/>
                 <button onClick={()=>{handleSave()}}>Salvar</button>
