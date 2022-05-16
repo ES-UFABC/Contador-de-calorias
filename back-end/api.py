@@ -177,12 +177,12 @@ def registerFood():
   macros['Calorias_de_Gorduras_Ideal_Kcal'] = avg_macro.fat_cals
   macros['Quantidade_de_Gorduras_Ideal_g'] = avg_macro.fat_g
 
-  macros['Variação_de_Carboidratos_Kcal'] = int(avg_macro.carbo_cals) - int(sum(carbo_cals))
-  macros['Variação_de_Carboidratos_g'] = int(avg_macro.carbo_g) - int(sum(carbo_val))
-  macros['Variação_de_Proteinas_Kcal'] = int(avg_macro.prot_cals) - int(sum(prot_cals))
-  macros['Variação_de_Proteinas_g'] = int(avg_macro.prot_g)  - sum(prot_val)
-  macros['Variação_de_Gorduras_Kcal'] = int(avg_macro.fat_cals) - sum(lip_cals)
-  macros['Variação_de_Gorduras_g'] = int(avg_macro.fat_g) - sum(lip_val)
+  macros['Variação_de_Carboidratos_Kcal'] = np.round( float(avg_macro.carbo_cals) - float(sum(carbo_cals)), 2)
+  macros['Variação_de_Carboidratos_g'] = np.round( float(avg_macro.carbo_g) - float(sum(carbo_val)), 2)
+  macros['Variação_de_Proteinas_Kcal'] = np.round( float(avg_macro.prot_cals) - float(sum(prot_cals)), 2)
+  macros['Variação_de_Proteinas_g'] = np.round(float(avg_macro.prot_g)  - sum(prot_val), 2)
+  macros['Variação_de_Gorduras_Kcal'] = np.round( float(avg_macro.fat_cals) - sum(lip_cals), 2)
+  macros['Variação_de_Gorduras_g'] = np.round(float(avg_macro.fat_g) - sum(lip_val), 2)
      
   response = app.response_class(
       response=json.dumps(macros),
@@ -233,13 +233,16 @@ def saveMeal():
     lip_cals.append(float(foods[i]['lip_val'])*9*qtd)
     prot_cals.append(float(foods[i]['prot_val'])*4*qtd)
     today.append(request.json['chosenDate'])
-    z = int(logs_df['log_id'].max())+1+i
+    try:
+      z = int(logs_df['log_id'].max())+1+i
+    except:
+      z = +1+i
     logs.append(z)
 
   df_temp = pd.DataFrame()
 
   if logs_df[logs_df['id'] == users_id].shape[0]>0:
-    meal_id = int(logs_df[logs_df['id'] == users_id]['log_id'].max())+1
+    meal_id = int(logs_df[logs_df['id'] == users_id]['meal_id'].max())+1
 
   else:
     meal_id = 1
@@ -295,22 +298,19 @@ def saveMeal():
 @app.route('/dropMeal', methods=['POST'])
 @cross_origin()
 def dropMeal(): 
+  
   users_df = pd.read_csv('users.csv', delimiter=';')
   logs_df = pd.read_csv('log.csv', delimiter=';')
-  username = request.json['userName']
-  pw = request.json['password']
-  check_user = users_df[(users_df['username']==str(username)) & (users_df['password']==pw)]
-  if check_user.shape[0]==0:
-    last_row = users_df.iloc[-1]
-    id = int(last_row['id']) + 1
-    token = int(last_row['token']) + 1
-    fields=[id, username, pw, token]
-    with open(r'users.csv', 'a') as f:
-      writer = csv.writer(f, delimiter=";")
-      writer.writerow(fields)
-    return Response(status=200)
-  else:
-    return Response(status=400)
+  auth = request.headers['Authorization']
+  meal_id = request.json['id']
+  id = users_df[(users_df['token']==int(auth))]['id'].values[0]
+
+  logs_df = logs_df[(logs_df['id'] == id) & ~(logs_df['meal_id'] == meal_id)]
+
+  logs_df.to_csv('log.csv', sep = ';', index = False)
+
+  return Response(status=200)
+  
 
 @app.route('/macroCalculus', methods=['GET'])
 @cross_origin()
@@ -471,7 +471,6 @@ def getMeals():
   
   temp = logs_df.groupby(['meal_id'])[['weight','protein','carbohydrate','fat','calories','created_at']].agg({'weight':'mean','protein':'sum','carbohydrate':'sum','fat':'sum','calories':'sum','created_at':'max'}).reset_index()
 
-  temp['meal_id'] = [i for i in range(1, temp.shape[0]+1)]
 
   temp.rename(columns = {'meal_id':'Refeicao_Numero','weight':'Peso', 'protein': 'Proteinas', 'carbohydrate': 'Carboidratos','fat':'Gorduras','calories':'Calorias','created_at':'Data'}, inplace = True)
 
